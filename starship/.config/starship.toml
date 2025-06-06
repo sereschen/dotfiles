@@ -79,10 +79,12 @@ truncation_symbol = "…/"
 
 
 [hostname]
-ssh_only = true
-format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+ssh_only = false
+style = 'bg:red fg:crust'
+format = '[@$hostname]($style)'
 trim_at = '.companyname.com'
 disabled = false
+aliases = {"Sergios-MacBook-Pro.local" = "local"}
 
 
 [git_branch]
