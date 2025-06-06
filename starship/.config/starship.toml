@@ -7,6 +7,7 @@ format = """
 $os\
 $username\
 $hostname\
+$sudo\
 [](bg:peach fg:red)\
 $directory\
 [](bg:yellow fg:peach)\
@@ -23,11 +24,7 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:green bg:sapphire)\
-$conda\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
+[ ](fg:green)\
 $line_break
 $character"""
 
@@ -36,6 +33,7 @@ palette = 'catppuccin_mocha'
 [os]
 disabled = false
 style = "bg:red fg:crust"
+format = "[ $symbol ]($style)"
 
 [os.symbols]
 Windows = ""
@@ -62,7 +60,7 @@ RedHatEnterprise = "󱄛"
 show_always = true
 style_user = "bg:red fg:crust"
 style_root = "bg:red fg:crust"
-format = '[ $user]($style)'
+format = '[$user ]($style)'
 
 [directory]
 style = "bg:peach fg:crust"
@@ -77,9 +75,16 @@ truncation_symbol = "…/"
 "Pictures" = " "
 "Developer" = "󰲋 "
 
+[sudo]
+symbol = ""
+format = "[$symbol  ]($style)"
+style = "bg:red fg:crust"
+disabled = false
+
+
 
 [hostname]
-ssh_only = false
+ssh_only = true
 style = 'bg:red fg:crust'
 format = '[@$hostname ]($style)'
 trim_at = '.companyname.com'
@@ -102,7 +107,7 @@ style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [bun]
-symbol = " "
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
@@ -164,7 +169,7 @@ style = "bg:lavender"
 format = '[[  $time ](fg:crust bg:lavender)]($style)'
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 disabled = false
