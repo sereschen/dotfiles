@@ -5,7 +5,7 @@
 ```
 git
 zsh
-nvim
+nvim 0.9+
 tmux
 starship
 

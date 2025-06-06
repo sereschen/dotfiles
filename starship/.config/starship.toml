@@ -10,7 +10,9 @@ $hostname\
 $sudo\
 [](bg:peach fg:red)\
 $directory\
-[](bg:yellow fg:peach)\
+[ ](fg:peach)\
+$fill\
+[](yellow)\
 $git_branch\
 $git_status\
 [](fg:yellow bg:green)\
@@ -24,11 +26,17 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[ ](fg:green)\
+[](fg:green bg:lavender)\
+$time\
+[ ](fg:lavender)\
 $line_break
 $character"""
 
 palette = 'catppuccin_mocha'
+
+[fill]
+symbol= " "
+
 
 [os]
 disabled = false
