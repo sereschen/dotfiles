@@ -84,7 +84,7 @@ style = 'bg:red fg:crust'
 format = '[@$hostname]($style)'
 trim_at = '.companyname.com'
 disabled = false
-aliases = {"Sergios-MacBook-Pro.local" = "local"}
+aliases = {"Sergios-MacBook-Pro.local" = "local", "philo-alpha-staging" = "staging"}
 
 
 [git_branch]
