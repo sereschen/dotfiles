@@ -81,14 +81,14 @@ truncation_symbol = "…/"
 [hostname]
 ssh_only = false
 style = 'bg:red fg:crust'
-format = '[@$hostname]($style)'
+format = '[@$hostname ]($style)'
 trim_at = '.companyname.com'
 disabled = false
 aliases = {"Sergios-MacBook-Pro.local" = "local", "philo-alpha-staging" = "staging"}
 
 
 [git_branch]
-symbol = ""
+symbol = " "
 style = "bg:yellow"
 format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
@@ -97,12 +97,12 @@ style = "bg:yellow"
 format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
 
 [nodejs]
-symbol = ""
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [bun]
-symbol = ""
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
@@ -112,17 +112,17 @@ style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [rust]
-symbol = ""
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [golang]
-symbol = ""
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [php]
-symbol = ""
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
@@ -132,22 +132,22 @@ style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [kotlin]
-symbol = ""
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [haskell]
-symbol = ""
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [python]
-symbol = ""
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
 
 [docker_context]
-symbol = ""
+symbol = " "
 style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
