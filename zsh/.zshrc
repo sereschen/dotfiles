@@ -45,5 +45,5 @@ eval "$(pyenv init -)"
 export PATH=$PATH:$(go env GOPATH)/bin
 
 eval "$(starship init zsh)"
-
+eval "$(fzf --zsh)"
 . "$HOME/.local/bin/env"
