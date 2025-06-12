@@ -1,22 +1,17 @@
-export ZSH="/Users/sergioescobar/.oh-my-zsh"
-
 ZSH_THEME="robbyrussell"
 
 ENABLE_CORRECTION="true"
 
 plugins=(
 	git
-	1password
 )
 
-source $ZSH/oh-my-zsh.sh
-eval "$(op completion zsh)";
-
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [[ -o interactive ]]; then
     fastfetch
 fi
 
-export PYTHONPATH="$PYTHONPATH:/Users/sergioescobar/nursefly-web/python/"
 
 export NVM_DIR=~/.nvm
 
@@ -24,16 +19,13 @@ export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-#source $(brew --prefix nvm)/nvm.sh
+source $(brew --prefix nvm)/nvm.sh
 export PATH="/usr/local/opt/postgresql@14/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/postgresql@14/lib"
 export CPPFLAGS="-I/usr/local/opt/postgresql@14/include"
 export PKG_CONFIG_PATH="/usr/local/opt/postgresql@14/lib/pkgconfig"
 # bun completions
-[ -s "/Users/sergioescobar/.bun/_bun" ] && source "/Users/sergioescobar/.bun/_bun"
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
