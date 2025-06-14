@@ -37,6 +37,8 @@
           pkgs.ripgrep
           pkgs.fd
           pkgs.tree-sitter
+          pkgs.wget
+          pkgs.lua-language-server
         ];
 
       # Necessary for using flakes on this system.
@@ -56,6 +58,11 @@
       homebrew = {
         enable = true;
       };
+
+      homebrew.brews = [
+        "luarocks"
+      ];
+
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
