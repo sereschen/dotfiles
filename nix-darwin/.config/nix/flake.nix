@@ -29,6 +29,14 @@
       environment.systemPackages =
         [ 
           pkgs.neovim
+          pkgs.raycast
+          pkgs.redis
+          pkgs.tmux
+          pkgs.starship
+          pkgs.ghostty-bin
+          pkgs.ripgrep
+          pkgs.fd
+          pkgs.tree-sitter
         ];
 
       # Necessary for using flakes on this system.
