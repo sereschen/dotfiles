@@ -39,6 +39,11 @@
           pkgs.tree-sitter
           pkgs.wget
           pkgs.lua-language-server
+          pkgs.zellij
+          pkgs.zsh
+          pkgs.fzf
+          pkgs.git
+          pkgs.zsh-autosuggestions
         ];
 
       # Necessary for using flakes on this system.
@@ -60,6 +65,7 @@
       };
 
       homebrew.brews = [
+        "protobuf"
         "luarocks"
       ];
 
@@ -70,23 +76,23 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
-  in
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Sergios-MacBook-Pro
-    darwinConfigurations."Sergios-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      modules = [ 
-        configuration
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            enable = true;
-            enableRosetta = true;
-            user = "sergio";
-            autoMigrate = true;
-          };
-        }
-      ];
+    in
+    {
+      # Build darwin flake using:
+      # $ darwin-rebuild build --flake .#Sergios-MacBook-Pro
+      darwinConfigurations."Sergios-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        modules = [ 
+          configuration
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = "sergio";
+              autoMigrate = true;
+            };
+          }
+        ];
+      };
     };
-  };
-}
+  }

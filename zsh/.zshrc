@@ -1,10 +1,31 @@
-ZSH_THEME="robbyrussell"
-
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$HOME/.oh-my-zsh
 ENABLE_CORRECTION="true"
 
 plugins=(
 	git
+  bundler
+  dotenv
+  macos
+  rake
+  rbenv
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  fast-syntax-highlighting
+  zsh-autocomplete
+  ruby
 )
+
+
+source $ZSH/oh-my-zsh.sh
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -16,6 +37,9 @@ fi
 export NVM_DIR=~/.nvm
 
 alias nixd='sudo nix run nix-darwin -- switch --flake ~/.config/nix'
+
+alias reload-zsh="source ~/.zshrc"
+alias edit-zsh="nvim ~/.zshrc"
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
