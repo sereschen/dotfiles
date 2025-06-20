@@ -3,3 +3,5 @@ window-padding-x = 6
 window-padding-y = 6
 font-family = Hack Nerd Font
 window-padding-balance = true
+window-decoration = true
+macos-option-as-alt = true

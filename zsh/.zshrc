@@ -2,6 +2,11 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/.oh-my-zsh
 ENABLE_CORRECTION="true"
 
+
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config/starship.toml
+
+
 plugins=(
 	git
   bundler
@@ -14,6 +19,7 @@ plugins=(
   fast-syntax-highlighting
   zsh-autocomplete
   ruby
+  zsh-vi-mode
 )
 
 
@@ -27,8 +33,6 @@ fi
 
 
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [[ -o interactive ]]; then
     fastfetch
 fi
@@ -60,6 +64,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 export PATH=$PATH:$(go env GOPATH)/bin
 
-eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 . "$HOME/.local/bin/env"
