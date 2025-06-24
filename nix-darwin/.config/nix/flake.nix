@@ -44,6 +44,8 @@
           pkgs.fzf
           pkgs.git
           pkgs.zsh-autosuggestions
+          pkgs.aerospace
+          pkgs.opencode
         ];
 
       # Necessary for using flakes on this system.

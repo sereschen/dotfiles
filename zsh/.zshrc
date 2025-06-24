@@ -40,7 +40,8 @@ fi
 
 export NVM_DIR=~/.nvm
 
-alias nixd='sudo nix run nix-darwin -- switch --flake ~/.config/nix'
+alias reload-nix='sudo nix run nix-darwin -- switch --flake ~/.config/nix'
+alias edit-nix='nvim ~/dotfiles/nix-darwin/.config/nix/flake.nix'
 
 alias reload-zsh="source ~/.zshrc"
 alias edit-zsh="nvim ~/.zshrc"
