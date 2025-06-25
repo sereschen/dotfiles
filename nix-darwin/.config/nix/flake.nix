@@ -45,7 +45,6 @@
           pkgs.git
           pkgs.zsh-autosuggestions
           pkgs.aerospace
-          pkgs.opencode
         ];
 
       # Necessary for using flakes on this system.
@@ -69,6 +68,7 @@
       homebrew.brews = [
         "protobuf"
         "luarocks"
+        "gemini-cli"
       ];
 
       # Used for backwards compatibility, please read the changelog before changing.

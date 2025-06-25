@@ -33,9 +33,9 @@ fi
 
 
 
-if [[ -o interactive ]]; then
-    fastfetch
-fi
+# if [[ -o interactive ]]; then
+#     fastfetch
+# fi
 
 
 export NVM_DIR=~/.nvm
