@@ -67,3 +67,4 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 eval "$(fzf --zsh)"
 . "$HOME/.local/bin/env"
+eval "$(zellij setup --generate-auto-start zsh)"
