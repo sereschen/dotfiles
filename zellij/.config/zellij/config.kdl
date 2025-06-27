@@ -233,6 +233,11 @@ plugins {
     strider location="zellij:strider"
     tab-bar location="zellij:tab-bar"
 }
+on_force_close "detach"
+
+simplified_ui true
+
+pane_frames false
 
 // load_plugins {
 // }

@@ -8,9 +8,6 @@ layout {
         plugin location="zellij:status-bar"
     }
   }
-  tab name="neovim" { 
-    
-    pane command="nvim"
-  }
+  tab name="neovim"  
   tab name="shell"
 }
