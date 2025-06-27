@@ -45,6 +45,9 @@
           pkgs.git
           pkgs.zsh-autosuggestions
           pkgs.aerospace
+          pkgs.bat  
+          pkgs.zoxide
+          pkgs.eza  
         ];
 
       # Necessary for using flakes on this system.

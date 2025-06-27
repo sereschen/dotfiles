@@ -6,19 +6,23 @@ ENABLE_CORRECTION="true"
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship.toml
 
+bindkey '^w' autosuggest-execute
+bindkey '^e' autosuggest-accept
+bindkey '^u' autosuggest-toggle
+bindkey '^L' vi-forward-word
+bindkey '^k' up-line-or-search
+bindkey '^j' down-line-or-search
+
+alias la=tree
+alias cat=bat
+alias cd=z
 
 plugins=(
 	git
-  bundler
-  dotenv
-  macos
-  rake
-  rbenv
   zsh-autosuggestions
   zsh-syntax-highlighting
   fast-syntax-highlighting
   zsh-autocomplete
-  ruby
   zsh-vi-mode
 )
 
@@ -65,5 +69,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 export PATH=$PATH:$(go env GOPATH)/bin
 
+eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
+
 . "$HOME/.local/bin/env"
