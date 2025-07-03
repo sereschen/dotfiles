@@ -47,7 +47,13 @@
           pkgs.aerospace
           pkgs.bat  
           pkgs.zoxide
-          pkgs.eza  
+          pkgs.eza 
+          pkgs.jankyborders
+          pkgs.lazydocker
+          pkgs.bash-language-server
+          pkgs.nodePackages.vscode-json-languageserver
+          pkgs.marksman
+
         ];
 
       # Necessary for using flakes on this system.
