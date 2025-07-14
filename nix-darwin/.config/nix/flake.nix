@@ -53,7 +53,8 @@
           pkgs.bash-language-server
           pkgs.nodePackages.vscode-json-languageserver
           pkgs.marksman
-
+          pkgs.taplo
+          pkgs.markdownlint-cli2  
         ];
 
       # Necessary for using flakes on this system.
@@ -70,6 +71,7 @@
         pkgs.nerd-fonts.hack
       ];
       system.primaryUser = "sergio";
+
       homebrew = {
         enable = true;
       };

@@ -72,4 +72,5 @@ export PATH=$PATH:$(go env GOPATH)/bin
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 
+alias ls="eza  --icons=always --all --grid -1 --git"
 . "$HOME/.local/bin/env"
