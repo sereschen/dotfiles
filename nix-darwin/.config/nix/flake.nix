@@ -54,7 +54,9 @@
           pkgs.nodePackages.vscode-json-languageserver
           pkgs.marksman
           pkgs.taplo
-          pkgs.markdownlint-cli2  
+          pkgs.markdownlint-cli2    
+          pkgs.cocoapods
+          pkgs.yazi  
         ];
 
       # Necessary for using flakes on this system.
