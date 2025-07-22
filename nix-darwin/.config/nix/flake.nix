@@ -57,6 +57,8 @@
           pkgs.markdownlint-cli2    
           pkgs.cocoapods
           pkgs.yazi  
+          pkgs.hadolint
+          pkgs.go-migrate
         ];
 
       # Necessary for using flakes on this system.
