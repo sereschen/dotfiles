@@ -10,5 +10,16 @@
         "qwen2.5-coder:14b": {}
       }
     }
+  },
+  "mcp": {
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "enabled": true
+    }
   }
 }

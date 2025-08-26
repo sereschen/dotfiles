@@ -1,11 +1,18 @@
-export ZSH=$HOME/.oh-my-zsh
-export ZSH_CUSTOM=$HOME/.oh-my-zsh
-ENABLE_CORRECTION="true"
 
+
+
+setopt prompt_subst
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit
+compinit
 
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship.toml
 
+export XDG_CONFIG_HOME="/Users/sergio/.config"
+
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^w' autosuggest-execute
 bindkey '^e' autosuggest-accept
 bindkey '^u' autosuggest-toggle
@@ -17,17 +24,9 @@ alias la=tree
 alias cat=bat
 alias cd=z
 
-plugins=(
-	git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  fast-syntax-highlighting
-  zsh-autocomplete
-  zsh-vi-mode
-)
 
 
-source $ZSH/oh-my-zsh.sh
+
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -35,12 +34,16 @@ else
   export EDITOR='nvim'
 fi
 
-
+# VI Mode!!!
+bindkey jj vi-cmd-mode
 
 # if [[ -o interactive ]]; then
 #     fastfetch
 # fi
 
+### FZF ###
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR=~/.nvm
 
@@ -72,5 +75,11 @@ export PATH=$PATH:$(go env GOPATH)/bin
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 
-alias ls="eza  --icons=always --all --grid -1 --git"
+alias ls="eza  --icons=always --all -1 --git"
 . "$HOME/.local/bin/env"
+export MTL_LANGUAGE_REVISION=Metal24
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/sergio/.lmstudio/bin"
+# End of LM Studio CLI section
+

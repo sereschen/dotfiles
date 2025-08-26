@@ -58,7 +58,7 @@
           pkgs.cocoapods
           pkgs.yazi  
           pkgs.hadolint
-          pkgs.go-migrate
+          pkgs.sqlfluff
         ];
 
       # Necessary for using flakes on this system.
