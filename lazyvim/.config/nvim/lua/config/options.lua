@@ -26,4 +26,3 @@ dap.configurations.rust = {
     stopOnEntry = false
   },
 }
--- vim.g.lazyvim_picker = "telescope"

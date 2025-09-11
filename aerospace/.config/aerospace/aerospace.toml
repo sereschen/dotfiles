@@ -158,7 +158,7 @@ run = "move-node-to-workspace Terminal"
 
 [[on-window-detected]]
 if.app-id = 'NULL-APP-BUNDLE-ID'
-run = "layout floating"
+run = "move-node-to-workspace Test"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Music'

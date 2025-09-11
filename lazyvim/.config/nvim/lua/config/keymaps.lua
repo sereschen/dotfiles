@@ -10,3 +10,6 @@ vim.keymap.set("n", "<leader>gww", "<CMD>lua require('telescope').extensions.git
   { desc = "List Git Worktrees" })
 vim.keymap.set("n", "<leader>gwn", "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
   { desc = "Create Git Worktree" })
+
+vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+vim.keymap.set("i", "jj", "<ESC>", { desc = "Exit insert mode with jk" })
