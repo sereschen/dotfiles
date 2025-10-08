@@ -163,3 +163,8 @@ run = "move-node-to-workspace Test"
 [[on-window-detected]]
 if.app-id = 'com.apple.Music'
 run = "move-node-to-workspace Music"
+
+
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = ["layout tiling"]

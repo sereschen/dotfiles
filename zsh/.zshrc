@@ -83,3 +83,5 @@ export MTL_LANGUAGE_REVISION=Metal24
 export PATH="$PATH:/Users/sergio/.lmstudio/bin"
 # End of LM Studio CLI section
 
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
