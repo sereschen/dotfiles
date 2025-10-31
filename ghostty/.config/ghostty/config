@@ -5,3 +5,4 @@ font-family = Hack Nerd Font
 window-padding-balance = true
 window-decoration = true
 macos-option-as-alt = true
+shell-integration-features = ssh-terminfo
