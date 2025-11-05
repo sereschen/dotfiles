@@ -82,8 +82,6 @@
 
       homebrew.brews = [
         "protobuf"
-        "luarocks"
-        "gemini-cli"
       ];
 
       # Used for backwards compatibility, please read the changelog before changing.
@@ -96,8 +94,8 @@
     in
     {
       # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#Sergios-MacBook-Pro
-      darwinConfigurations."Sergios-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+      # $ darwin-rebuild build --flake .#macbook
+      darwinConfigurations."macbook" = nix-darwin.lib.darwinSystem {
         modules = [ 
           configuration
           nix-homebrew.darwinModules.nix-homebrew
