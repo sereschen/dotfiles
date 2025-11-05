@@ -2,6 +2,9 @@ return {
   "mrcjkb/rustaceanvim",
   opts = function(_, opts)
     opts = opts or {}
+    opts.rocks = {
+      hererocks = true, -- Use hererocks to manage Lua versions
+    }
     local local_opts = opts
     local path = { "server", "default_settings", "rust-analyzer", "procMacro", "ignored" }
 
