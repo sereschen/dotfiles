@@ -15,6 +15,7 @@ detect_os() {
 		OS="macos"
 	elif [[ -f /etc/os-release ]]; then
 		ID="" ID_LIKE="" || true
+		# shellcheck disable=SC1091
 		. /etc/os-release
 		if [[ "${ID:-}" == "arch" ]] || [[ "${ID_LIKE:-}" == *"arch"* ]]; then
 			OS="arch"
@@ -197,7 +198,7 @@ interactive_selector() {
 		echo "  [5] Install Selected"
 		echo "  [6] Cancel"
 		echo
-		read -p "Enter choice [1-6]: " choice
+		read -rp "Enter choice [1-6]: " choice
 
 		case "$choice" in
 		1) select_category "required" ;;
@@ -267,7 +268,7 @@ select_category() {
 		done
 
 		echo
-		read -p "Enter selection: " choice
+		read -rp "Enter selection: " choice
 
 		if [[ -z "$choice" ]]; then
 			break
@@ -308,7 +309,8 @@ install_packages() {
 # Install single package
 install_package() {
 	local package=$1
-	local pkg_name=$(get_package_name "$package")
+	local pkg_name
+	pkg_name=$(get_package_name "$package")
 
 	case $OS in
 	macos) install_macos "$package" "$pkg_name" ;;
@@ -402,11 +404,11 @@ main() {
 	interactive_selector
 	install_packages
 
-	echo -e "${GREEN}Installation complete!${NC}\n"
-	echo -e "${YELLOW}Next steps:${NC}"
+	printf "%b\n" "${GREEN}Installation complete!${NC}"
+	printf "%b\n" "${YELLOW}Next steps:${NC}"
 	echo "  1. Create symlinks for configuration files"
-	echo "  2. Set zsh as default shell: ${BLUE}chsh -s /bin/zsh${NC}"
-	echo "  3. Source your shell config: ${BLUE}source ~/.zshrc${NC}\n"
+	printf "%b\n" "  2. Set zsh as default shell: ${BLUE}chsh -s /bin/zsh${NC}"
+	printf "%b\n" "  3. Source your shell config: ${BLUE}source ~/.zshrc${NC}"
 }
 
 # Run main function
