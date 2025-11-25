@@ -1,1 +1,21 @@
 .DS_Store
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+.*.swp
+.vscode/extensions/
+
+# System files
+Thumbs.db
+*.log
+
+# Local overrides
+*.local
+local/
