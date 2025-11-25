@@ -224,3 +224,39 @@ LSP servers and formatters are typically configured via:
 - **Tool config files** - `.stylua.toml`, `.prettierrc`, `golangci.yml`, etc.
 
 When multiple config formats exist, prefer YAML or TOML over JSON for readability.
+
+---
+
+## External Code & Vendored Dependencies
+
+When working with projects that include external code or vendored dependencies, do NOT
+modify them and suppress any warnings from these directories:
+
+### Suppress Warnings For
+
+- **@tmux/.config/tmux/plugins/** - All tmux plugin managers and plugins
+  (tpm, tmux-sensible, tmux-yank, tmux-resurrect, tmux-continuum, tmux-thumbs,
+  vim-tmux-navigator, tmux-fzf, tmux-fzf-url, catppuccin-tmux, tmux-sessionx, tmux-floax)
+
+- **@oh-my-zsh/.oh-my-zsh/plugins/** - All oh-my-zsh plugins and themes
+  (asdf, autojump, docker-machine, git-lfs, history-substring-search, kube-ps1,
+  and all other vendored plugins)
+
+- **@lazyvim/.config/nvim/lua/plugins/** - LazyVim plugin specifications
+  (when LazyVim plugins are vendored)
+
+### Guidelines
+
+1. **Do NOT modify** - External code should be left untouched
+2. **Do NOT fix warnings** - Let the original maintainers handle issues
+3. **Suppress all warnings** - Use linter/formatter directives if needed to silence them
+4. **Document why** - If you must reference external code, explain it's external
+5. **Keep in sync** - Only update these when explicitly needed (version bumps, security fixes)
+
+### Examples
+
+If you encounter warnings from these directories:
+- Ignore shellcheck warnings from tmux plugins
+- Ignore any linter warnings from oh-my-zsh plugins
+- Skip formatting suggestions for external code
+- Focus modifications only on YOUR code, not external dependencies
