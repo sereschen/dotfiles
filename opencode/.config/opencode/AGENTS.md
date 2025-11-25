@@ -160,6 +160,7 @@ Mason.nvim (Neovim), asdf, or other version managers, OpenCode should:
 ### Popular LSP Servers
 
 **By Language:**
+
 - **Lua** - `lua_ls` (Lua language server)
 - **Bash/Shell** - `bashls` (Bash language server)
 - **Go** - `gopls` (Go language server)
@@ -172,6 +173,7 @@ Mason.nvim (Neovim), asdf, or other version managers, OpenCode should:
 ### Code Quality Tools
 
 **Linters** (tools to check code quality):
+
 - **Shell scripts** - `shellcheck` (detects common shell script errors)
 - **Python** - `pylint`, `flake8`
 - **Go** - `golangci-lint`
@@ -179,6 +181,7 @@ Mason.nvim (Neovim), asdf, or other version managers, OpenCode should:
 - **JavaScript/TypeScript** - `eslint`
 
 **Formatters** (tools to format code):
+
 - **Shell scripts** - `shfmt` (shell script formatter)
 - **Lua** - `stylua` (Lua code formatter)
 - **Python** - `black`, `autopep8`
@@ -219,6 +222,7 @@ Mason.nvim (Neovim), asdf, or other version managers, OpenCode should:
 ### Configuration Management
 
 LSP servers and formatters are typically configured via:
+
 - **opencode.json** - Project-specific LSP/formatter configuration
 - **AGENTS.md** - Project rules and guidelines
 - **Tool config files** - `.stylua.toml`, `.prettierrc`, `golangci.yml`, etc.
@@ -253,6 +257,7 @@ modify them and suppress any warnings from these directories:
 ### Examples
 
 If you encounter warnings from these directories:
+
 - Ignore shellcheck warnings from tmux plugins
 - Ignore any linter warnings from oh-my-zsh plugins
 - Skip formatting suggestions for external code
