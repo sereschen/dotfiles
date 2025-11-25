@@ -142,3 +142,85 @@ languages that support documentation comments (such as Go, TypeScript,
 and Rust), add proper documentation comments to exported functions,
 types, and modules. These documentation comments help tools like
 godoc, TSDoc, and rustdoc generate high-quality API documentation.
+
+---
+
+## Development Tools & LSP Integration
+
+When working on projects that use LSP servers, linters, and formatters through tools like
+Mason.nvim (Neovim), asdf, or other version managers, OpenCode should:
+
+### LSP Server Awareness
+
+1. **Detect installed LSP servers** - Check system PATH and Mason.nvim installations
+2. **Respect LSP diagnostics** - Follow language server warnings and error suggestions
+3. **Avoid conflicts** - If multiple LSP servers are available for the same language,
+   use the one specified in the project configuration
+
+### Popular LSP Servers
+
+**By Language:**
+- **Lua** - `lua_ls` (Lua language server)
+- **Bash/Shell** - `bashls` (Bash language server)
+- **Go** - `gopls` (Go language server)
+- **Python** - `pyright` (Python language server)
+- **Rust** - `rust_analyzer` (Rust analyzer)
+- **TypeScript/JavaScript** - `typescript` (TS language server)
+- **JSON** - Built-in JSON schema validation
+- **YAML** - `yaml-language-server`
+
+### Code Quality Tools
+
+**Linters** (tools to check code quality):
+- **Shell scripts** - `shellcheck` (detects common shell script errors)
+- **Python** - `pylint`, `flake8`
+- **Go** - `golangci-lint`
+- **Rust** - `clippy`
+- **JavaScript/TypeScript** - `eslint`
+
+**Formatters** (tools to format code):
+- **Shell scripts** - `shfmt` (shell script formatter)
+- **Lua** - `stylua` (Lua code formatter)
+- **Python** - `black`, `autopep8`
+- **Go** - `gofmt` (Go formatter)
+- **Rust** - `rustfmt` (Rust formatter)
+- **JavaScript/JSON** - `prettier` (prettier code formatter)
+- **YAML/Markdown** - `prettier` (if available)
+
+### Guidelines for OpenCode
+
+1. **Automatic Formatting** - Apply formatters after writing/editing files to maintain
+   consistent code style across the project
+
+2. **Diagnostic Feedback** - When LSP servers report warnings or errors:
+   - Include them in your context when making suggestions
+   - Suggest fixes that resolve LSP diagnostics
+   - Only suppress warnings when there's a valid reason (document why)
+
+3. **Tool Discovery** - Try to find tools in this order:
+   - System PATH (installed via package managers like Homebrew, apt, pacman)
+   - Mason.nvim installations (Neovim plugin manager for LSP/formatters)
+   - Local project installations (node_modules, venv, etc.)
+   - Built-in tools (gopls, rust-analyzer via rustup, etc.)
+
+4. **Language-Specific Best Practices**
+   - **Shell scripts**: Follow ShellCheck recommendations, use `[[` over `[`, quote variables
+   - **Lua**: Follow LazyVim conventions, avoid inline comments in configs
+   - **Python**: Follow PEP 8 standards with black formatter
+   - **Go**: Follow Go conventions, consider air for development with hot reload
+   - **Rust**: Follow Rust API guidelines, use clippy suggestions
+   - **TypeScript**: Use strict mode, add proper documentation comments
+
+5. **When Tools Aren't Available** - If a required formatter or LSP isn't found:
+   - Check if the tool needs to be installed
+   - Suggest installation method (Homebrew, Mason, npm, etc.)
+   - Continue with best practices even if tool isn't available
+
+### Configuration Management
+
+LSP servers and formatters are typically configured via:
+- **opencode.json** - Project-specific LSP/formatter configuration
+- **AGENTS.md** - Project rules and guidelines
+- **Tool config files** - `.stylua.toml`, `.prettierrc`, `golangci.yml`, etc.
+
+When multiple config formats exist, prefer YAML or TOML over JSON for readability.
