@@ -53,26 +53,26 @@ print_section() {
 # Package descriptions
 get_package_description() {
 	case $1 in
-		git) echo "git" ;;
-		zsh) echo "zsh" ;;
-		nvim) echo "neovim 0.9+" ;;
-		tmux) echo "tmux" ;;
-		starship) echo "starship" ;;
-		fd) echo "fd (find alternative)" ;;
-		bat) echo "bat (cat with syntax highlighting)" ;;
-		fzf) echo "fzf (fuzzy finder)" ;;
-		eza) echo "eza (ls alternative)" ;;
-		tree) echo "tree (directory viewer)" ;;
-		ripgrep) echo "ripgrep (fast grep alternative)" ;;
-		pyenv) echo "pyenv (Python version manager)" ;;
-		nvm) echo "nvm (Node version manager)" ;;
-		go) echo "go (Go programming language)" ;;
-		bun) echo "bun (JavaScript runtime)" ;;
-		uv) echo "uv (Python package installer)" ;;
-		postgresql) echo "postgresql (database)" ;;
-		docker) echo "docker (containerization)" ;;
-		gh) echo "gh (GitHub CLI)" ;;
-		*) echo "$1" ;;
+	git) echo "git" ;;
+	zsh) echo "zsh" ;;
+	nvim) echo "neovim 0.9+" ;;
+	tmux) echo "tmux" ;;
+	starship) echo "starship" ;;
+	fd) echo "fd (find alternative)" ;;
+	bat) echo "bat (cat with syntax highlighting)" ;;
+	fzf) echo "fzf (fuzzy finder)" ;;
+	eza) echo "eza (ls alternative)" ;;
+	tree) echo "tree (directory viewer)" ;;
+	ripgrep) echo "ripgrep (fast grep alternative)" ;;
+	pyenv) echo "pyenv (Python version manager)" ;;
+	nvm) echo "nvm (Node version manager)" ;;
+	go) echo "go (Go programming language)" ;;
+	bun) echo "bun (JavaScript runtime)" ;;
+	uv) echo "uv (Python package installer)" ;;
+	postgresql) echo "postgresql (database)" ;;
+	docker) echo "docker (containerization)" ;;
+	gh) echo "gh (GitHub CLI)" ;;
+	*) echo "$1" ;;
 	esac
 }
 
@@ -80,75 +80,75 @@ get_package_description() {
 get_package_name() {
 	local package=$1
 	case $OS in
-		macos)
-			case $package in
-				git) echo "git" ;;
-				zsh) echo "zsh" ;;
-				nvim) echo "neovim" ;;
-				tmux) echo "tmux" ;;
-				starship) echo "starship" ;;
-				fd) echo "fd" ;;
-				bat) echo "bat" ;;
-				fzf) echo "fzf" ;;
-				eza) echo "eza" ;;
-				tree) echo "tree" ;;
-				ripgrep) echo "ripgrep" ;;
-				pyenv) echo "pyenv" ;;
-				nvm) echo "nvm" ;;
-				go) echo "go" ;;
-				bun) echo "bun" ;;
-				uv) echo "uv" ;;
-				postgresql) echo "postgresql" ;;
-				docker) echo "docker" ;;
-				gh) echo "gh" ;;
-			esac
-			;;
-		arch)
-			case $package in
-				git) echo "git" ;;
-				zsh) echo "zsh" ;;
-				nvim) echo "neovim" ;;
-				tmux) echo "tmux" ;;
-				starship) echo "starship" ;;
-				fd) echo "fd" ;;
-				bat) echo "bat" ;;
-				fzf) echo "fzf" ;;
-				eza) echo "eza" ;;
-				tree) echo "tree" ;;
-				ripgrep) echo "ripgrep" ;;
-				pyenv) echo "pyenv" ;;
-				nvm) echo "nvm" ;;
-				go) echo "go" ;;
-				bun) echo "bun" ;;
-				uv) echo "uv" ;;
-				postgresql) echo "postgresql" ;;
-				docker) echo "docker" ;;
-				gh) echo "github-cli" ;;
-			esac
-			;;
-		debian)
-			case $package in
-				git) echo "git" ;;
-				zsh) echo "zsh" ;;
-				nvim) echo "neovim" ;;
-				tmux) echo "tmux" ;;
-				starship) echo "starship" ;;
-				fd) echo "fd-find" ;;
-				bat) echo "bat" ;;
-				fzf) echo "fzf" ;;
-				eza) echo "exa" ;;
-				tree) echo "tree" ;;
-				ripgrep) echo "ripgrep" ;;
-				pyenv) echo "pyenv" ;;
-				nvm) echo "npm" ;;
-				go) echo "golang-go" ;;
-				bun) echo "bun" ;;
-				uv) echo "uv" ;;
-				postgresql) echo "postgresql" ;;
-				docker) echo "docker.io" ;;
-				gh) echo "gh" ;;
-			esac
-			;;
+	macos)
+		case $package in
+		git) echo "git" ;;
+		zsh) echo "zsh" ;;
+		nvim) echo "neovim" ;;
+		tmux) echo "tmux" ;;
+		starship) echo "starship" ;;
+		fd) echo "fd" ;;
+		bat) echo "bat" ;;
+		fzf) echo "fzf" ;;
+		eza) echo "eza" ;;
+		tree) echo "tree" ;;
+		ripgrep) echo "ripgrep" ;;
+		pyenv) echo "pyenv" ;;
+		nvm) echo "nvm" ;;
+		go) echo "go" ;;
+		bun) echo "bun" ;;
+		uv) echo "uv" ;;
+		postgresql) echo "postgresql" ;;
+		docker) echo "docker" ;;
+		gh) echo "gh" ;;
+		esac
+		;;
+	arch)
+		case $package in
+		git) echo "git" ;;
+		zsh) echo "zsh" ;;
+		nvim) echo "neovim" ;;
+		tmux) echo "tmux" ;;
+		starship) echo "starship" ;;
+		fd) echo "fd" ;;
+		bat) echo "bat" ;;
+		fzf) echo "fzf" ;;
+		eza) echo "eza" ;;
+		tree) echo "tree" ;;
+		ripgrep) echo "ripgrep" ;;
+		pyenv) echo "pyenv" ;;
+		nvm) echo "nvm" ;;
+		go) echo "go" ;;
+		bun) echo "bun" ;;
+		uv) echo "uv" ;;
+		postgresql) echo "postgresql" ;;
+		docker) echo "docker" ;;
+		gh) echo "github-cli" ;;
+		esac
+		;;
+	debian)
+		case $package in
+		git) echo "git" ;;
+		zsh) echo "zsh" ;;
+		nvim) echo "neovim" ;;
+		tmux) echo "tmux" ;;
+		starship) echo "starship" ;;
+		fd) echo "fd-find" ;;
+		bat) echo "bat" ;;
+		fzf) echo "fzf" ;;
+		eza) echo "exa" ;;
+		tree) echo "tree" ;;
+		ripgrep) echo "ripgrep" ;;
+		pyenv) echo "pyenv" ;;
+		nvm) echo "npm" ;;
+		go) echo "golang-go" ;;
+		bun) echo "bun" ;;
+		uv) echo "uv" ;;
+		postgresql) echo "postgresql" ;;
+		docker) echo "docker.io" ;;
+		gh) echo "gh" ;;
+		esac
+		;;
 	esac
 }
 
@@ -167,7 +167,7 @@ is_selected() {
 toggle_package() {
 	local package=$1
 	if is_selected "$package"; then
-		SELECTED_PACKAGES=("${SELECTED_PACKAGES[@]/$package}")
+		SELECTED_PACKAGES=("${SELECTED_PACKAGES[@]/$package/}")
 	else
 		SELECTED_PACKAGES+=("$package")
 	fi
@@ -200,26 +200,26 @@ interactive_selector() {
 		read -p "Enter choice [1-6]: " choice
 
 		case "$choice" in
-			1) select_category "required" ;;
-			2) select_category "dev" ;;
-			3) select_category "lang" ;;
-			4) select_category "other" ;;
-			5)
-				if [[ ${#SELECTED_PACKAGES[@]} -eq 0 ]]; then
-					echo -e "\n${RED}✗ No packages selected. Please select at least one package.${NC}\n"
-					sleep 2
-				else
-					return 0
-				fi
-				;;
-			6)
-				echo -e "\n${YELLOW}Installation cancelled.${NC}\n"
-				exit 0
-				;;
-			*)
-				echo -e "${RED}Invalid option. Please try again.${NC}"
-				sleep 1
-				;;
+		1) select_category "required" ;;
+		2) select_category "dev" ;;
+		3) select_category "lang" ;;
+		4) select_category "other" ;;
+		5)
+			if [[ ${#SELECTED_PACKAGES[@]} -eq 0 ]]; then
+				echo -e "\n${RED}✗ No packages selected. Please select at least one package.${NC}\n"
+				sleep 2
+			else
+				return 0
+			fi
+			;;
+		6)
+			echo -e "\n${YELLOW}Installation cancelled.${NC}\n"
+			exit 0
+			;;
+		*)
+			echo -e "${RED}Invalid option. Please try again.${NC}"
+			sleep 1
+			;;
 		esac
 	done
 }
@@ -231,22 +231,22 @@ select_category() {
 	local title=""
 
 	case $category in
-		required)
-			items=(git zsh nvim tmux starship)
-			title="Required Tools"
-			;;
-		dev)
-			items=(fd bat fzf eza tree ripgrep)
-			title="Development Tools"
-			;;
-		lang)
-			items=(pyenv nvm go bun uv)
-			title="Language Managers"
-			;;
-		other)
-			items=(postgresql docker gh)
-			title="Other Tools"
-			;;
+	required)
+		items=(git zsh nvim tmux starship)
+		title="Required Tools"
+		;;
+	dev)
+		items=(fd bat fzf eza tree ripgrep)
+		title="Development Tools"
+		;;
+	lang)
+		items=(pyenv nvm go bun uv)
+		title="Language Managers"
+		;;
+	other)
+		items=(postgresql docker gh)
+		title="Other Tools"
+		;;
 	esac
 
 	while true; do
@@ -311,13 +311,13 @@ install_package() {
 	local pkg_name=$(get_package_name "$package")
 
 	case $OS in
-		macos) install_macos "$package" "$pkg_name" ;;
-		arch) install_arch "$package" "$pkg_name" ;;
-		debian) install_debian "$package" "$pkg_name" ;;
-		*)
-			echo -e "${RED}✗ Unknown OS: $OS${NC}"
-			return 1
-			;;
+	macos) install_macos "$package" "$pkg_name" ;;
+	arch) install_arch "$package" "$pkg_name" ;;
+	debian) install_debian "$package" "$pkg_name" ;;
+	*)
+		echo -e "${RED}✗ Unknown OS: $OS${NC}"
+		return 1
+		;;
 	esac
 }
 
