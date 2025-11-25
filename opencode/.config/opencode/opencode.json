@@ -10,5 +10,11 @@
       ],
       "enabled": true
     }
+  },
+  "command": {
+    "commit": {
+      "description": "Generate a nice commit message from staged changes",
+      "template": "Please analyze the staged git changes and generate a professional, well-structured commit message following conventional commits format.\n\nHere are the staged changes:\n!`git diff --cached`\n\nGenerate a commit message that:\n1. Follows conventional commits format (type: scope: description)\n2. Provides a concise, descriptive summary (50 chars or less)\n3. If needed, includes a body with detailed explanation\n4. Uses imperative mood (\"add\" not \"added\")\n5. Is clear and explains the \"why\" not just the \"what\"\n\nSuggest the complete commit message I can use with `git commit -m \"...\"` or for a multi-line message."
+    }
   }
 }
