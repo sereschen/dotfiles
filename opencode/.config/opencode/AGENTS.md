@@ -242,9 +242,6 @@ modify them and suppress any warnings from these directories:
   (asdf, autojump, docker-machine, git-lfs, history-substring-search, kube-ps1,
   and all other vendored plugins)
 
-- **@lazyvim/.config/nvim/lua/plugins/** - LazyVim plugin specifications
-  (when LazyVim plugins are vendored)
-
 ### Guidelines
 
 1. **Do NOT modify** - External code should be left untouched
