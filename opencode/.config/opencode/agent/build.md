@@ -1,6 +1,6 @@
 ---
 description: Main development agent for substantial coding work
-mode: primary
+mode: all
 model: opencode/claude-sonnet-4
 temperature: 0.3
 ---
