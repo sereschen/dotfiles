@@ -5,8 +5,8 @@ return {
     opts = {
       layout = {
         resize_to_content = true,
-      }
-    }
+      },
+    },
   },
   {
     "stevearc/aerial.nvim",
@@ -17,7 +17,7 @@ return {
         resize_to_content = true,
         min_width = 30,
         max_width = 0.9,
-      }
+      },
     },
-  }
+  },
 }
