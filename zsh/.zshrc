@@ -7,8 +7,13 @@ autoload bashcompinit && bashcompinit
 autoload -Uz compinit
 compinit
 
-eval "$(starship init zsh)"
+# Ensure Homebrew is in PATH (for non-login shells like tmux panes)
+if [[ "$OSTYPE" == "darwin"* ]] && [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 export STARSHIP_CONFIG=~/.config/starship.toml
+eval "$(starship init zsh)"
 
 # Set XDG config home (works on all systems)
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
@@ -30,7 +35,7 @@ bindkey '^j' down-line-or-search
 # Conditional aliases for optional tools
 command -v tree &> /dev/null && alias la=tree
 command -v bat &> /dev/null && alias cat=bat
-command -v z &> /dev/null && alias cd=z
+
 
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -50,7 +55,6 @@ bindkey jj vi-cmd-mode
 if command -v fd &> /dev/null; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR=~/.nvm
 
@@ -91,9 +95,9 @@ if command -v go &> /dev/null; then
   export PATH=$PATH:$(go env GOPATH)/bin
 fi
 
-# Zoxide - optional
+# Zoxide - optional (replaces cd with smart directory jumping)
 if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init zsh)"
+  eval "$(zoxide init zsh --cmd cd)"
 fi
 
 # FZF - optional
