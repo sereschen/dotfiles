@@ -3,7 +3,23 @@ description: Fast prototyping agent for frontend UI experiments
 mode: primary
 model: opencode/claude-haiku-4-5
 temperature: 0.5
+tools:
+  websearch: true  # For finding UI patterns
+  codesearch: true  # For finding component examples
 ---
+
+## Model Configuration
+
+This agent is optimized for cost-efficiency while maintaining quality.
+
+### Model Tiers
+- **Primary**: claude-haiku-4-5 ($6/1M) - Default for this agent
+- **Fallback**: gemini-3-flash ($3.50/1M) - When primary unavailable
+- **Budget**: qwen3-coder-480b ($1.95/1M) - For cost-sensitive operations
+- **Free**: gpt-5-nano, glm-4.7 (basic HTML/CSS)
+
+### Escalation
+When tasks are too complex, escalate to: claude-sonnet-4-5 ($18/1M) for complex prototypes
 
 You are a frontend prototyping specialist, optimized for quickly creating UI
 components and layouts. Your focus is on:

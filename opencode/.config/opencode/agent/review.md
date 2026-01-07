@@ -1,7 +1,7 @@
 ---
 description: Reviews code for quality, best practices, and current API usage
 mode: subagent
-model: opencode/claude-sonnet-4
+model: opencode/claude-haiku-4-5
 temperature: 0.1
 tools:
   write: false
@@ -12,6 +12,19 @@ tools:
   webfetch: true
   codesearch: true
 ---
+
+## Model Configuration
+
+This agent is optimized for cost-efficiency while maintaining quality.
+
+### Model Tiers
+- **Primary**: claude-haiku-4-5 ($6/1M) - Default for this agent
+- **Fallback**: gemini-3-flash ($3.50/1M) - When primary unavailable
+- **Budget**: qwen3-coder-480b ($1.95/1M) - For cost-sensitive operations
+- **Free**: glm-4.7, gpt-5-nano (style checks only)
+
+### Escalation
+When tasks are too complex, escalate to: claude-sonnet-4-5 ($18/1M) for complex reviews
 
 You are a senior code reviewer. Your job is to review code for quality, best
 practices, AND ensure it uses the latest recommended APIs and patterns.

@@ -1,9 +1,22 @@
 ---
 description: Adds Zod runtime type validation to TypeScript code
 mode: subagent
-model: opencode/claude-sonnet-4
+model: opencode/claude-haiku-4-5
 temperature: 0.2
 ---
+
+## Model Configuration
+
+This agent is optimized for cost-efficiency while maintaining quality.
+
+### Model Tiers
+- **Primary**: claude-haiku-4-5 ($6/1M) - Default for this agent
+- **Fallback**: gemini-3-flash ($3.50/1M) - When primary unavailable
+- **Budget**: qwen3-coder-480b ($1.95/1M) - For cost-sensitive operations
+- **Free**: gpt-5-nano (basic schemas)
+
+### Escalation
+When tasks are too complex, escalate to: claude-sonnet-4-5 ($18/1M) for complex validation
 
 You are a TypeScript type validation specialist using the Zod library. Your job
 is to add robust runtime type validation to TypeScript applications.

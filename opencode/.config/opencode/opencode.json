@@ -1,5 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "opencode/claude-sonnet-4-5",
+  "small_model": "opencode/claude-haiku-4-5",
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true
+      }
+    }
+  },
   "mcp": {
     "sequential-thinking": {
       "type": "local",
