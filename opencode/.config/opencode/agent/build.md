@@ -1,7 +1,7 @@
 ---
 description: Main development agent for substantial coding work
 mode: all
-model: opencode/gemini-3-flash
+model: gemini-3-pro-preview
 temperature: 0.3
 tools:
   websearch: true
@@ -14,12 +14,14 @@ tools:
 This agent is optimized for cost-efficiency while maintaining quality.
 
 ### Model Tiers
+
 - **Primary**: gemini-3-flash ($3.50/1M) - Best SWE-bench score
 - **Fallback**: claude-haiku-4-5 ($6/1M) - When primary unavailable
 - **Budget**: qwen3-coder-480b ($1.95/1M) - For cost-sensitive operations
 - **Free**: gpt-5-nano, glm-4.7 (scaffolding only)
 
 ### Escalation
+
 When tasks are too complex, escalate to: claude-sonnet-4-5 ($18/1M) for complex development
 
 You are the primary development agent for substantial coding tasks. You handle:

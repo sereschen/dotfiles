@@ -1,7 +1,7 @@
 ---
 description: Reviews code for quality, best practices, and current API usage
 mode: subagent
-model: opencode/claude-haiku-4-5
+model: google/gemini-3-pro-preview
 temperature: 0.1
 tools:
   write: false
@@ -18,8 +18,8 @@ tools:
 This agent is optimized for cost-efficiency while maintaining quality.
 
 ### Model Tiers
-- **Primary**: claude-haiku-4-5 ($6/1M) - Default for this agent
-- **Fallback**: gemini-3-flash ($3.50/1M) - When primary unavailable
+- **Primary**: google/gemini-3-pro-preview ($0/1M) - Default for this agent (free with Google OAuth)
+- **Fallback**: claude-haiku-4-5 ($6/1M) - When primary unavailable
 - **Budget**: qwen3-coder-480b ($1.95/1M) - For cost-sensitive operations
 - **Free**: glm-4.7, gpt-5-nano (style checks only)
 

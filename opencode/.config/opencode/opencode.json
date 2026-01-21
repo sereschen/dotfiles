@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode/claude-sonnet-4-5",
-  "small_model": "opencode/claude-haiku-4-5",
+  "model": "google/gemini-3-pro-preview",
+  "small_model": "google/gemini-3-flash-preview",
   "provider": {
     "anthropic": {
       "options": {
@@ -25,5 +25,6 @@
       "description": "Generate a nice commit message from staged changes",
       "template": "Please analyze the staged git changes and generate a professional, well-structured commit message following conventional commits format.\n\nHere are the staged changes:\n!`git diff --cached`\n\nGenerate a commit message that:\n1. Follows conventional commits format (type: scope: description)\n2. Provides a concise, descriptive summary (50 chars or less)\n3. If needed, includes a body with detailed explanation\n4. Uses imperative mood (\"add\" not \"added\")\n5. Is clear and explains the \"why\" not just the \"what\"\n\nONLY output the commit message text itself, nothing else. Do NOT run git commit or any other commands."
     }
-  }
+  },
+  "plugin": ["opencode-gemini-auth@latest"]
 }

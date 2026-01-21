@@ -54,6 +54,22 @@ outer.bottom = 0
 outer.top = 0
 outer.right = 0
 
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = "move-node-to-workspace Terminal"
+
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = "move-node-to-workspace Music"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iphonesimulator'
+run = "layout floating"
+
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = ["layout tiling"]
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
@@ -98,6 +114,7 @@ alt-shift-l = 'move right'
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +5'
 alt-f = 'fullscreen'
+alt-shift-f = 'layout floating tiling'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace Terminal'
@@ -112,13 +129,14 @@ alt-shift-3 = 'move-node-to-workspace Chats'
 alt-4 = 'workspace Test'
 alt-shift-4 = 'move-node-to-workspace Test'
 
-alt-5 = 'workspace 5'
+alt-5 = 'workspace Obsidian'
+alt-shift-5 = 'move-node-to-workspace Obsidian'
+
 alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-9 = 'workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-9 = 'move-node-to-workspace 9'
@@ -155,21 +173,3 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
-
-[[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run = "move-node-to-workspace Terminal"
-
-
-[[on-window-detected]]
-if.app-id = 'NULL-APP-BUNDLE-ID'
-run = "move-node-to-workspace Test"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Music'
-run = "move-node-to-workspace Music"
-
-
-[[on-window-detected]]
-if.app-id = "com.mitchellh.ghostty"
-run = ["layout tiling"]

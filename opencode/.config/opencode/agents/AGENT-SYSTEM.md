@@ -13,12 +13,12 @@ Our agent system is designed to minimize token costs while maintaining high code
 
 ## Cost Savings Summary
 
-| Metric | Before | After | Savings |
-|--------|--------|-------|---------|
-| Average Cost/1M tokens | ~$16 | ~$6.50 | **60%** |
-| Builder Agent | $18/1M | $3.50/1M | **81%** |
-| Subagent Average | $15/1M | $6/1M | **60%** |
-| Free Tier Tasks | $0 | $0 | **100%** |
+| Metric                 | Before | After    | Savings  |
+| ---------------------- | ------ | -------- | -------- |
+| Average Cost/1M tokens | ~$16   | ~$6.50   | **60%**  |
+| Builder Agent          | $18/1M | $3.50/1M | **81%**  |
+| Subagent Average       | $15/1M | $6/1M    | **60%**  |
+| Free Tier Tasks        | $0     | $0       | **100%** |
 
 ## Agent Hierarchy
 
@@ -48,37 +48,41 @@ Our agent system is designed to minimize token costs while maintaining high code
 ## Agent Tiers
 
 ### Tier 1: Strategic (Premium)
-| Agent | Model | Cost | Use For |
-|-------|-------|------|---------|
-| @architect | Claude Sonnet 4.5 | $18/1M | Planning, orchestration, complex decisions |
-| @fixer | Claude Sonnet 4.5 | $18/1M | Complex debugging, stuck situations |
-| @fixer-escalate | Claude Opus 4.5 | $30/1M | Impossible bugs (last resort) |
+
+| Agent           | Model             | Cost   | Use For                                    |
+| --------------- | ----------------- | ------ | ------------------------------------------ |
+| @architect      | Claude Sonnet 4.5 | $18/1M | Planning, orchestration, complex decisions |
+| @fixer          | Claude Sonnet 4.5 | $18/1M | Complex debugging, stuck situations        |
+| @fixer-escalate | Claude Opus 4.5   | $30/1M | Impossible bugs (last resort)              |
 
 ### Tier 2: Primary (Standard)
-| Agent | Model | Cost | Use For |
-|-------|-------|------|---------|
-| @build | Gemini 3 Flash | $3.50/1M | Feature implementation, code generation |
-| @review | Claude Haiku 4.5 | $6/1M | Code review, quality analysis |
-| @test-generator | Claude Haiku 4.5 | $6/1M | Test creation |
-| @security-audit | Claude Haiku 4.5 | $6/1M | Security scanning |
-| @docs | Claude Haiku 4.5 | $6/1M | Documentation |
-| @research | Claude Haiku 4.5 | $6/1M | Documentation lookup |
+
+| Agent           | Model            | Cost     | Use For                                 |
+| --------------- | ---------------- | -------- | --------------------------------------- |
+| @build          | Gemini 3 Flash   | $3.50/1M | Feature implementation, code generation |
+| @review         | Claude Haiku 4.5 | $6/1M    | Code review, quality analysis           |
+| @test-generator | Claude Haiku 4.5 | $6/1M    | Test creation                           |
+| @security-audit | Claude Haiku 4.5 | $6/1M    | Security scanning                       |
+| @docs           | Claude Haiku 4.5 | $6/1M    | Documentation                           |
+| @research       | Claude Haiku 4.5 | $6/1M    | Documentation lookup                    |
 
 ### Tier 3: Budget (Cost-Sensitive)
-| Agent | Model | Cost | Use For |
-|-------|-------|------|---------|
-| @build-budget | Qwen3 Coder 480B | $1.95/1M | Simple code generation |
-| @test-generator-budget | Qwen3 Coder 480B | $1.95/1M | Simple unit tests |
+
+| Agent                  | Model            | Cost     | Use For                |
+| ---------------------- | ---------------- | -------- | ---------------------- |
+| @build-budget          | Qwen3 Coder 480B | $1.95/1M | Simple code generation |
+| @test-generator-budget | Qwen3 Coder 480B | $1.95/1M | Simple unit tests      |
 
 ### Tier 4: Free (Trivial Tasks)
-| Agent | Model | Cost | Use For |
-|-------|-------|------|---------|
-| @build-free | GPT-5 Nano | $0 | Scaffolding, boilerplate |
-| @quick-free | GPT-5 Nano | $0 | Trivial edits |
-| @docs-free | GLM-4.7 | $0 | Basic README |
-| @review-free | GLM-4.7 | $0 | Style checks only |
-| @research-free | GLM-4.7 | $0 | Simple lookups |
-| @test-generator-free | GPT-5 Nano | $0 | Test scaffolding |
+
+| Agent                | Model      | Cost | Use For                  |
+| -------------------- | ---------- | ---- | ------------------------ |
+| @build-free          | GPT-5 Nano | $0   | Scaffolding, boilerplate |
+| @quick-free          | GPT-5 Nano | $0   | Trivial edits            |
+| @docs-free           | GLM-4.7    | $0   | Basic README             |
+| @review-free         | GLM-4.7    | $0   | Style checks only        |
+| @research-free       | GLM-4.7    | $0   | Simple lookups           |
+| @test-generator-free | GPT-5 Nano | $0   | Test scaffolding         |
 
 ## Routing Decision Tree
 
@@ -115,6 +119,7 @@ START: What type of task?
 ## Usage Examples
 
 ### Using Free Tier
+
 ```
 # For scaffolding
 @build-free Create a basic Express server with health endpoint
@@ -127,6 +132,7 @@ START: What type of task?
 ```
 
 ### Using Budget Tier
+
 ```
 # For simple features
 @build-budget Add a GET /users endpoint that returns all users
@@ -136,6 +142,7 @@ START: What type of task?
 ```
 
 ### Using Primary Tier
+
 ```
 # For complex features
 @build Implement JWT authentication with refresh tokens and rate limiting
@@ -148,6 +155,7 @@ START: What type of task?
 ```
 
 ### Using Escalate Tier
+
 ```
 # Only when @fixer fails multiple times
 @fixer-escalate Debug this race condition that @fixer couldn't solve: [context]
@@ -163,6 +171,7 @@ The @architect agent automatically routes tasks to appropriate tiers. When using
 4. **Monitors results** - Escalates if needed
 
 ### Example Architect Workflow
+
 ```
 User: "Add user authentication to the app"
 
@@ -183,7 +192,9 @@ Architect delegates:
 ## Switching Between Agents
 
 ### Via Tab Key (Primary Agents)
+
 Press Tab to cycle through primary agents:
+
 - @architect
 - @build
 - @quick
@@ -192,14 +203,18 @@ Press Tab to cycle through primary agents:
 - @study
 
 ### Via @mention (Any Agent)
+
 Type @ followed by agent name:
+
 - @build-budget
 - @fixer-escalate
 - @review-free
 - etc.
 
 ### Via /models Command
+
 Change model for current agent:
+
 ```
 /models
 ```
@@ -207,26 +222,31 @@ Change model for current agent:
 ## Best Practices
 
 ### 1. Start Low, Escalate as Needed
+
 - Begin with the cheapest appropriate tier
 - Only escalate if quality is insufficient
 - Don't retry more than twice at the same tier
 
 ### 2. Batch Similar Tasks
+
 - Group similar simple tasks together
 - Use budget/free tiers for batches
 - Example: Generate 10 test files with @test-generator-budget
 
 ### 3. Reserve Premium for Critical
+
 - Use @fixer-escalate only for truly stuck situations
 - Don't waste Opus on simple bugs
 - Security reviews should use primary tier minimum
 
 ### 4. Consider Context Size
+
 - Free models have smaller context windows
 - Use primary tier for large file analysis
 - Budget tier works for focused, small tasks
 
 ### 5. Monitor Quality
+
 - If free/budget produces poor results, escalate
 - Track which tiers work for which task types
 - Adjust routing based on experience
@@ -234,6 +254,7 @@ Change model for current agent:
 ## Configuration Files
 
 ### opencode.json
+
 ```json
 {
   "model": "opencode/claude-sonnet-4-5",
@@ -249,6 +270,7 @@ Change model for current agent:
 ```
 
 ### Agent Files Location
+
 ```
 ~/.config/opencode/agent/
 ├── architect.md          # Strategic planning (Sonnet 4.5)
@@ -281,30 +303,34 @@ To monitor your costs:
 
 ### Expected Monthly Savings
 
-| Usage Level | Before | After | Savings |
-|-------------|--------|-------|---------|
-| Light (5M tokens) | $80 | $32 | $48/mo |
-| Medium (10M tokens) | $160 | $65 | $95/mo |
-| Heavy (20M tokens) | $320 | $130 | $190/mo |
+| Usage Level         | Before | After | Savings |
+| ------------------- | ------ | ----- | ------- |
+| Light (5M tokens)   | $80    | $32   | $48/mo  |
+| Medium (10M tokens) | $160   | $65   | $95/mo  |
+| Heavy (20M tokens)  | $320   | $130  | $190/mo |
 
 ## Troubleshooting
 
 ### Free Tier Produces Poor Results
+
 - Escalate to budget or primary tier
 - Free models have limitations
 - Use for truly trivial tasks only
 
 ### Agent Not Found
+
 - Check agent file exists in ~/.config/opencode/agent/
 - Verify filename matches (case-sensitive)
 - Restart OpenCode after adding new agents
 
 ### Model Unavailable
+
 - Free models may have rate limits
 - Try alternative free model
 - Fall back to budget tier
 
 ### Task Too Complex for Tier
+
 - Signs: incomplete output, errors, poor quality
 - Solution: escalate to next tier
 - Don't retry more than twice
@@ -319,5 +345,5 @@ To monitor your costs:
 
 ---
 
-*Last Updated: January 2026*
-*System Version: 1.0*
+_Last Updated: January 2026_
+_System Version: 1.0_

@@ -16,6 +16,91 @@ unless explicitly required or specified by the user.
 
 ---
 
+## Model Configuration (Gemini 3 via Google OAuth)
+
+This OpenCode installation is configured to use Google Gemini 3 models
+via Google OAuth authentication (opencode-gemini-auth plugin). With
+your Google account logged in, these models are **free to use** with
+no API costs.
+
+### Current Model Configuration
+
+- **Primary Model**: `google/gemini-3-pro-preview`
+  - Used for: Main agents (@architect, @build, @review, etc.)
+  - Cost: $0 (free with Google OAuth)
+  - Performance: High-quality reasoning, coding, and analysis
+
+- **Small Model**: `google/gemini-3-flash-preview`
+  - Used for: Lightweight tasks, quick operations
+  - Cost: $0 (free with Google OAuth)
+  - Performance: Fast, efficient for simple tasks
+
+### Benefits
+
+- **Zero Cost**: No API charges when using Google OAuth
+- **High Rate Limits**: Access to Antigravity's generous quotas
+- **Latest Models**: Access to preview and experimental Gemini models
+- **Full Integration**: Works seamlessly with all OpenCode agents
+
+### Configuration Location
+
+Model settings are configured in:
+`~/.config/opencode/opencode.json` or
+`~/dotfiles/opencode/.config/opencode/opencode.json`
+
+To change models, update the `model` and `small_model` fields in the
+configuration file.
+
+---
+
+## Model Selection Strategy (Gemini-First)
+
+Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
+
+### Use Gemini Pro (Free) For:
+- ✅ Code reviews and quality checks (@review)
+- ✅ Research and documentation lookup (@research)
+- ✅ Test generation (@test-generator)
+- ✅ Security audits (@security-audit)
+- ✅ API design (@api-designer)
+- ✅ Database schema design (@database-manager)
+- ✅ Performance optimization analysis (@performance-optimizer)
+- ✅ Main development work (@build)
+
+### Use Gemini Flash (Free) For:
+- ✅ Quick fixes and small edits (@quick)
+- ✅ Documentation writing (@docs)
+- ✅ TypeScript type checking (@typescript-checker)
+- ✅ Dependency management (@dependency-manager)
+- ✅ DevOps configuration (@devops-config)
+- ✅ Zod schema generation (@zod-validator)
+- ✅ UI prototyping (@prototype)
+- ✅ Learning and exploration (@study)
+
+### Use Claude Sonnet ($18/1M) For:
+- 🎯 Strategic architecture planning (@architect)
+- 🎯 Complex debugging (@fixer)
+- 🎯 Multi-agent orchestration
+
+### Use Claude Opus ($30/1M) Only For:
+- 🚨 Impossible bugs after @fixer fails (@fixer-escalate)
+- 🚨 Critical production incidents
+- 🚨 Complex race conditions and concurrency issues
+
+### Cost Optimization Strategy:
+1. **Default to Gemini** - Start with free Gemini models
+2. **Escalate to Claude** - Only when Gemini can't handle complexity
+3. **Reserve Opus** - Last resort for truly impossible problems
+4. **Monitor Quality** - If Gemini produces poor results, escalate immediately
+
+### Expected Benefits:
+- **Zero Cost**: Most agents now use free Gemini models
+- **High Quality**: Gemini Pro/Flash provide excellent code understanding
+- **Strategic Claude Usage**: Reserve paid models for complex reasoning
+- **Estimated Savings**: $50-200/month depending on usage patterns
+
+---
+
 ## Project Initialization
 
 When there is no AGENTS.md file in a project and you're initializing

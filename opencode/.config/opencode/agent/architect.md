@@ -12,6 +12,7 @@ tools:
   glob: true
   grep: true
   list: true
+  plan_enter: true
 permission:
   edit: deny
   bash: deny
@@ -178,15 +179,18 @@ As the architect, you are responsible for cost-efficient task delegation. Choose
 
 We have multiple tiers for frequently-used agents:
 
-| Agent              | Primary (Default)              | Budget                                  | Free                              | Escalate                      |
-| ------------------ | ------------------------------ | --------------------------------------- | --------------------------------- | ----------------------------- |
-| **build**          | @build (Gemini Flash $3.50/1M) | @build-budget (Qwen3 $1.95/1M)          | @build-free (GPT-5 Nano)          | -                             |
-| **review**         | @review (Haiku $6/1M)          | -                                       | @review-free (GLM-4.7)            | -                             |
-| **test-generator** | @test-generator (Haiku $6/1M)  | @test-generator-budget (Qwen3 $1.95/1M) | @test-generator-free (GPT-5 Nano) | -                             |
-| **docs**           | @docs (Haiku $6/1M)            | -                                       | @docs-free (GLM-4.7)              | -                             |
-| **research**       | @research (Haiku $6/1M)        | -                                       | @research-free (GLM-4.7)          | -                             |
-| **quick**          | @quick (Haiku $6/1M)           | -                                       | @quick-free (GPT-5 Nano)          | -                             |
-| **fixer**          | @fixer (Sonnet $18/1M)         | -                                       | -                                 | @fixer-escalate (Opus $30/1M) |
+| Agent              | Primary (Default)                       | Budget                                  | Free                              | Escalate                      |
+| ------------------ | --------------------------------------- | --------------------------------------- | --------------------------------- | ----------------------------- |
+| **build**          | @build (Gemini Pro FREE)                | @build-budget (Qwen3 $1.95/1M)          | @build-free (GPT-5 Nano)          | -                             |
+| **review**         | @review (Gemini Pro FREE)               | -                                       | @review-free (GLM-4.7)            | -                             |
+| **test-generator** | @test-generator (Gemini Pro FREE)       | @test-generator-budget (Qwen3 $1.95/1M) | @test-generator-free (GPT-5 Nano) | -                             |
+| **docs**           | @docs (Gemini Flash FREE)               | -                                       | @docs-free (GLM-4.7)              | -                             |
+| **research**       | @research (Gemini Pro FREE)             | -                                       | @research-free (GLM-4.7)          | -                             |
+| **quick**          | @quick (Gemini Flash FREE)              | -                                       | @quick-free (GPT-5 Nano)          | -                             |
+| **architect**      | @architect (Sonnet $18/1M)              | -                                       | -                                 | -                             |
+| **fixer**          | @fixer (Sonnet $18/1M)                  | -                                       | -                                 | @fixer-escalate (Opus $30/1M) |
+| **security-audit** | @security-audit (Gemini Pro FREE)       | -                                       | -                                 | -                             |
+| **typescript-checker** | @typescript-checker (Gemini Flash FREE) | -                                   | -                                 | -                             |
 
 ### Routing Decision Tree
 
