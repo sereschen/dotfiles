@@ -6,10 +6,8 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "~/obsidian/sereschen@gmail.com/",
+        path = "~/obsidian/git/",
       },
     },
-
-    -- see below for full list of options 👇
   },
 }

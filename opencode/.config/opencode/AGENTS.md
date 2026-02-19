@@ -16,12 +16,12 @@ unless explicitly required or specified by the user.
 
 ---
 
-## Model Configuration (Gemini 3 via Google OAuth)
+## Model Configuration (Gemini 3 + Kimi K2.5 Fallback)
 
 This OpenCode installation is configured to use Google Gemini 3 models
-via Google OAuth authentication (opencode-gemini-auth plugin). With
-your Google account logged in, these models are **free to use** with
-no API costs.
+as the primary option via Google OAuth authentication (opencode-gemini-auth
+plugin). **Kimi K2.5** is configured as an automatic fallback when Gemini
+encounters rate limits, errors, or quality issues.
 
 ### Current Model Configuration
 
@@ -30,17 +30,28 @@ no API costs.
   - Cost: $0 (free with Google OAuth)
   - Performance: High-quality reasoning, coding, and analysis
 
+- **Fallback Model**: `opencode/kimi-k2.5`
+  - Used when: Gemini hits rate limits, returns errors, or struggles
+  - Cost: $0.60/M input, $3.00/M output (via OpenCode Zen)
+  - Performance: State-of-the-art coding, 256K context window
+
 - **Small Model**: `google/gemini-3-flash-preview`
   - Used for: Lightweight tasks, quick operations
   - Cost: $0 (free with Google OAuth)
   - Performance: Fast, efficient for simple tasks
 
+- **Small Fallback**: `opencode/kimi-k2.5`
+  - Used when: Gemini Flash hits rate limits or errors
+  - Cost: $0.60/M input, $3.00/M output
+  - Performance: Excellent for quick tasks when Gemini unavailable
+
 ### Benefits
 
-- **Zero Cost**: No API charges when using Google OAuth
-- **High Rate Limits**: Access to Antigravity's generous quotas
-- **Latest Models**: Access to preview and experimental Gemini models
-- **Full Integration**: Works seamlessly with all OpenCode agents
+- **Zero Cost Primary**: Gemini models are free with Google OAuth
+- **Automatic Fallback**: Kimi K2.5 kicks in automatically when needed
+- **No Interruption**: Work continues seamlessly even if Gemini has issues
+- **Cost Effective**: Kimi is 3-6x cheaper than Claude/Codex alternatives
+- **High Quality**: Kimi K2.5 matches or exceeds GPT-5/Codex on coding tasks
 
 ### Configuration Location
 
@@ -48,12 +59,34 @@ Model settings are configured in:
 `~/.config/opencode/opencode.json` or
 `~/dotfiles/opencode/.config/opencode/opencode.json`
 
-To change models, update the `model` and `small_model` fields in the
-configuration file.
+Models are configured as arrays for automatic fallback:
+```json
+{
+  "model": [
+    "google/gemini-3-pro-preview",
+    "opencode/kimi-k2.5"
+  ],
+  "small_model": [
+    "google/gemini-3-flash-preview",
+    "opencode/kimi-k2.5"
+  ]
+}
+```
+
+### Setting Up OpenCode Zen (for Kimi fallback)
+
+To use Kimi K2.5 as a fallback:
+
+1. Run `/connect` in OpenCode
+2. Select **OpenCode Zen**
+3. Visit [opencode.ai/auth](https://opencode.ai/auth)
+4. Add billing details (pay-as-you-go, only charged when fallback is used)
+5. Copy your API key and paste it into OpenCode
+6. Run `/models` to verify Kimi K2.5 is available
 
 ---
 
-## Model Selection Strategy (Gemini-First)
+## Model Selection Strategy (Gemini-First with Kimi Fallback)
 
 Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
 
@@ -77,9 +110,16 @@ Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
 - ✅ UI prototyping (@prototype)
 - ✅ Learning and exploration (@study)
 
+### Use Kimi K2.5 ($3.60/M total) For:
+- 🎯 Fallback when Gemini hits rate limits or errors
+- 🎯 Complex coding tasks requiring deep reasoning
+- 🎯 Long context tasks (256K tokens)
+- 🎯 Agentic workflows and multi-step tasks
+- 🎯 When Gemini quality is insufficient
+
 ### Use Claude Sonnet ($18/1M) For:
 - 🎯 Strategic architecture planning (@architect)
-- 🎯 Complex debugging (@fixer)
+- 🎯 Complex debugging (@fixer) - when Kimi also struggles
 - 🎯 Multi-agent orchestration
 
 ### Use Claude Opus ($30/1M) Only For:
@@ -89,15 +129,17 @@ Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
 
 ### Cost Optimization Strategy:
 1. **Default to Gemini** - Start with free Gemini models
-2. **Escalate to Claude** - Only when Gemini can't handle complexity
-3. **Reserve Opus** - Last resort for truly impossible problems
-4. **Monitor Quality** - If Gemini produces poor results, escalate immediately
+2. **Automatic Kimi Fallback** - Seamless fallback when Gemini struggles
+3. **Escalate to Claude** - Only when Gemini AND Kimi can't handle complexity
+4. **Reserve Opus** - Last resort for truly impossible problems
+5. **Monitor Quality** - If models produce poor results, escalate immediately
 
 ### Expected Benefits:
-- **Zero Cost**: Most agents now use free Gemini models
-- **High Quality**: Gemini Pro/Flash provide excellent code understanding
-- **Strategic Claude Usage**: Reserve paid models for complex reasoning
-- **Estimated Savings**: $50-200/month depending on usage patterns
+- **Zero Cost Primary**: Gemini models are free with Google OAuth
+- **Seamless Fallback**: Kimi automatically takes over when needed
+- **Cost Effective**: Kimi is 3-6x cheaper than Claude/Codex alternatives
+- **High Quality**: Kimi K2.5 matches or exceeds GPT-5/Codex on coding tasks
+- **No Interruptions**: Work continues even during Gemini rate limits
 
 ---
 
