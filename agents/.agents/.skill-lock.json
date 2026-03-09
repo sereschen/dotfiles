@@ -1,0 +1,136 @@
+{
+  "version": 3,
+  "skills": {
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "c2f31172b6f256272305a5e6e7228b258446899f",
+      "installedAt": "2026-03-09T23:28:52.103Z",
+      "updatedAt": "2026-03-09T23:33:19.720Z"
+    },
+    "receiving-code-review": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers.git",
+      "skillPath": "skills/receiving-code-review/SKILL.md",
+      "skillFolderHash": "7750c56fddb8b2f1cbdb1550a6e3e40d2eeac5f1",
+      "installedAt": "2026-03-09T23:50:54.864Z",
+      "updatedAt": "2026-03-09T23:50:54.864Z"
+    },
+    "requesting-code-review": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers.git",
+      "skillPath": "skills/requesting-code-review/SKILL.md",
+      "skillFolderHash": "c96076bf7ee813b9c5a2016ff3ece6bc0a628e03",
+      "installedAt": "2026-03-09T23:50:54.906Z",
+      "updatedAt": "2026-03-09T23:50:54.906Z"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "skillFolderHash": "fce8b5a24ff4ff2fc5db6aa1051e03b53c6b5bf1",
+      "installedAt": "2026-03-09T23:50:55.004Z",
+      "updatedAt": "2026-03-09T23:50:55.004Z"
+    },
+    "test-driven-development": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers.git",
+      "skillPath": "skills/test-driven-development/SKILL.md",
+      "skillFolderHash": "98904a7d8e0e04b9bd46220b9b17298f45fe0b72",
+      "installedAt": "2026-03-09T23:50:56.328Z",
+      "updatedAt": "2026-03-09T23:50:56.328Z"
+    },
+    "backend-testing": {
+      "source": "supercent-io/skills-template",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/supercent-io/skills-template.git",
+      "skillPath": ".agent-skills/backend-testing/SKILL.md",
+      "skillFolderHash": "0e03be6f514163f8dafd7a0e07cc96b14a625a1b",
+      "installedAt": "2026-03-09T23:51:00.503Z",
+      "updatedAt": "2026-03-09T23:51:00.503Z"
+    },
+    "security-best-practices": {
+      "source": "supercent-io/skills-template",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/supercent-io/skills-template.git",
+      "skillPath": ".agent-skills/security-best-practices/SKILL.md",
+      "skillFolderHash": "355916565c001feeda735a54f8a78edfc103a33a",
+      "installedAt": "2026-03-09T23:51:01.301Z",
+      "updatedAt": "2026-03-09T23:51:01.301Z"
+    },
+    "technical-writing": {
+      "source": "supercent-io/skills-template",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/supercent-io/skills-template.git",
+      "skillPath": ".agent-skills/technical-writing/SKILL.md",
+      "skillFolderHash": "eac6ec16c7813c22045f70454089b973b5dfd1fb",
+      "installedAt": "2026-03-09T23:51:04.558Z",
+      "updatedAt": "2026-03-09T23:51:04.558Z"
+    },
+    "typescript-advanced-types": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/wshobson/agents.git",
+      "skillPath": "plugins/javascript-typescript/skills/typescript-advanced-types/SKILL.md",
+      "skillFolderHash": "a2fe3beb2f08b66b467981df7e09a2ccc5c9c7d2",
+      "installedAt": "2026-03-09T23:51:06.765Z",
+      "updatedAt": "2026-03-09T23:51:06.765Z"
+    },
+    "api-documentation": {
+      "source": "supercent-io/skills-template",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/supercent-io/skills-template.git",
+      "skillPath": ".agent-skills/api-documentation/SKILL.md",
+      "skillFolderHash": "30b43b9e9419447ffca648f4e7846700380f357b",
+      "installedAt": "2026-03-09T23:51:07.799Z",
+      "updatedAt": "2026-03-09T23:51:07.799Z"
+    },
+    "api-design": {
+      "source": "supercent-io/skills-template",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/supercent-io/skills-template.git",
+      "skillPath": ".agent-skills/api-design/SKILL.md",
+      "skillFolderHash": "a42d80f3e578cd6091d67527e491916f9e6c935e",
+      "installedAt": "2026-03-09T23:51:09.202Z",
+      "updatedAt": "2026-03-09T23:51:09.202Z"
+    },
+    "performance-optimization": {
+      "source": "supercent-io/skills-template",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/supercent-io/skills-template.git",
+      "skillPath": ".agent-skills/performance-optimization/SKILL.md",
+      "skillFolderHash": "22fef0bb5eb49ef84b44ee7f94d787597d22c252",
+      "installedAt": "2026-03-09T23:51:10.411Z",
+      "updatedAt": "2026-03-09T23:51:10.411Z"
+    },
+    "webapp-testing": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/webapp-testing/SKILL.md",
+      "skillFolderHash": "74cb751576f9e9af2aedff47e67861ef26db2dc4",
+      "pluginName": "example-skills",
+      "installedAt": "2026-03-09T23:51:16.683Z",
+      "updatedAt": "2026-03-09T23:51:16.683Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-cli",
+    "opencode"
+  ]
+}
