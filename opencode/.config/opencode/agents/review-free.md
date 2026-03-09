@@ -1,7 +1,7 @@
 ---
 description: Free review agent - for basic style checks only
 mode: subagent
-model: opencode/glm-4.7
+model: opencode-go/KIMI-k2.5
 temperature: 0.1
 tools:
   write: false

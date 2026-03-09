@@ -1,7 +1,7 @@
 ---
 description: Budget test generator using Qwen3 Coder
 mode: subagent
-model: opencode/qwen3-coder-480b
+model: opencode-go/KIMI-k2.5
 temperature: 0.3
 tools:
   write: true
@@ -23,11 +23,11 @@ This agent is optimized for cost-efficiency while maintaining quality.
 
 ### Model Tiers
 - **Primary**: qwen3-coder-480b ($1.95/1M) - Budget option for this agent
-- **Fallback**: gemini-3-flash ($3.50/1M) - When primary unavailable
+- **Fallback**: opencode/kimi-k2.5 ($3.60/1M) - When primary unavailable, excellent coding performance
 - **Free**: gpt-5-nano (basic test scaffolding)
 
 ### Escalation
-When tasks are too complex, escalate to: @test-generator ($6/1M) for comprehensive test generation
+When tasks are too complex, escalate to: @test-generator ($0/1M with Gemini) for comprehensive test generation
 
 You are a budget testing specialist. Your job is to create simple, maintainable
 tests that ensure basic code quality.

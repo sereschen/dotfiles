@@ -1,7 +1,7 @@
 ---
 description: Free research agent - for simple documentation lookups
 mode: subagent
-model: opencode/glm-4.7
+model: opencode-go/KIMI-k2.5
 temperature: 0.2
 tools:
   write: false

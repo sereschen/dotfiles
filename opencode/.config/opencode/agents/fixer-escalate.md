@@ -1,7 +1,7 @@
 ---
 description: Escalated fixer using Opus 4.5 - for impossible bugs only
 mode: subagent
-model: opencode/claude-opus-4-5
+model: opencode/claude-opus-4-6
 temperature: 0.3
 tools:
   websearch: true

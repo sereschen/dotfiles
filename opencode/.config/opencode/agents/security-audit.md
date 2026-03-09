@@ -1,7 +1,7 @@
 ---
 description: Security vulnerability scanning, authentication review, and security best practices
 mode: subagent
-model: google/gemini-3-pro-preview
+model: opencode-go/KIMI-k2.5
 temperature: 0.2
 tools:
   write: false
@@ -21,7 +21,7 @@ This agent is optimized for cost-efficiency while maintaining quality.
 
 ### Model Tiers
 - **Primary**: google/gemini-3-pro-preview ($0/1M) - Default for this agent (free with Google OAuth)
-- **Fallback**: claude-haiku-4-5 ($6/1M) - When primary unavailable
+- **Fallback**: opencode/kimi-k2.5 ($3.60/1M) - When Gemini hits rate limits or errors
 - **Budget**: qwen3-coder-480b ($1.95/1M) - For cost-sensitive operations
 - **Free**: Not recommended for security
 

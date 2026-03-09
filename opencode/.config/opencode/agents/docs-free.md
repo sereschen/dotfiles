@@ -1,7 +1,7 @@
 ---
 description: Free docs agent - for basic README and comment generation
 mode: subagent
-model: opencode/glm-4.7
+model: opencode-go/KIMI-k2.5
 temperature: 0.3
 tools:
   bash: false

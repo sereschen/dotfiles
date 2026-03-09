@@ -59,18 +59,13 @@ Model settings are configured in:
 `~/.config/opencode/opencode.json` or
 `~/dotfiles/opencode/.config/opencode/opencode.json`
 
-Models are configured as arrays for automatic fallback:
-```json
-{
-  "model": [
-    "google/gemini-3-pro-preview",
-    "opencode/kimi-k2.5"
-  ],
-  "small_model": [
-    "google/gemini-3-flash-preview",
-    "opencode/kimi-k2.5"
-  ]
-}
+Individual agents are configured with fallback models in their agent definitions. The global configuration uses the primary model, and agents specify their fallback chain in their frontmatter:
+```yaml
+---
+model:
+  - google/gemini-3-pro-preview
+  - opencode/kimi-k2.5
+---
 ```
 
 ### Setting Up OpenCode Zen (for Kimi fallback)

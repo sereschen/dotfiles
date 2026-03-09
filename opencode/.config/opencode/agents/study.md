@@ -1,7 +1,7 @@
 ---
 description: Interactive learning and code exploration - asks questions to guide understanding
 mode: primary
-model: google/gemini-3-flash-preview
+model: opencode-go/KIMI-k2.5
 temperature: 0.3
 tools:
   write: false
@@ -27,7 +27,7 @@ This agent is optimized for cost-efficiency while maintaining quality.
 
 ### Model Tiers
 - **Primary**: google/gemini-3-flash-preview ($0/1M) - Default for this agent (free with Google OAuth)
-- **Fallback**: google/gemini-3-pro-preview ($0/1M) - For more complex tasks (free with Google OAuth)
+- **Fallback**: opencode/kimi-k2.5 ($3.60/1M) - When Gemini hits rate limits or errors
 - **Budget**: claude-haiku-4-5 ($6/1M) - If Gemini unavailable
 - **Free**: glm-4.7, gpt-5-nano (simple Q&A)
 

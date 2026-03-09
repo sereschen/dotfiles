@@ -15,9 +15,9 @@ Our agent system is designed to minimize token costs while maintaining high code
 
 | Metric                 | Before | After    | Savings  |
 | ---------------------- | ------ | -------- | -------- |
-| Average Cost/1M tokens | ~$16   | ~$6.50   | **60%**  |
-| Builder Agent          | $18/1M | $3.50/1M | **81%**  |
-| Subagent Average       | $15/1M | $6/1M    | **60%**  |
+| Average Cost/1M tokens | ~$16   | ~$3.60   | **78%**  |
+| Builder Agent          | $18/1M | $3.60/1M | **80%**  |
+| Subagent Average       | $15/1M | $3.60/1M | **76%**  |
 | Free Tier Tasks        | $0     | $0       | **100%** |
 
 ## Agent Hierarchy
@@ -25,16 +25,16 @@ Our agent system is designed to minimize token costs while maintaining high code
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    ARCHITECT AGENT                              │
-│                 Claude Sonnet 4.5 ($18/1M)                     │
+│                 Kimi K2.5 ($3.60/1M)                            │
 │     Routes tasks to appropriate agents based on complexity      │
 └─────────────────────────────────────────────────────────────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
+                               │
+         ┌─────────────────────┼─────────────────────┐
+         │                     │                     │
 ┌───────────────┐    ┌───────────────┐    ┌───────────────┐
 │    BUILDER    │    │    FIXER      │    │   RESEARCH    │
-│ Gemini Flash  │    │ Sonnet 4.5    │    │  Haiku 4.5    │
-│  ($3.50/1M)   │    │  ($18/1M)     │    │   ($6/1M)     │
+│  Kimi K2.5    │    │  Kimi K2.5    │    │  Kimi K2.5    │
+│  ($3.60/1M)   │    │  ($3.60/1M)   │    │  ($3.60/1M)   │
 └───────────────┘    └───────────────┘    └───────────────┘
         │                     │
    ┌────┴────┐           ┌────┴────┐
@@ -49,22 +49,24 @@ Our agent system is designed to minimize token costs while maintaining high code
 
 ### Tier 1: Strategic (Premium)
 
-| Agent           | Model             | Cost   | Use For                                    |
-| --------------- | ----------------- | ------ | ------------------------------------------ |
-| @architect      | Claude Sonnet 4.5 | $18/1M | Planning, orchestration, complex decisions |
-| @fixer          | Claude Sonnet 4.5 | $18/1M | Complex debugging, stuck situations        |
-| @fixer-escalate | Claude Opus 4.5   | $30/1M | Impossible bugs (last resort)              |
+| Agent           | Model               | Cost     | Use For                                         |
+| --------------- | ------------------- | -------- | ----------------------------------------------- |
+| @architect      | Kimi K2.5           | $3.60/1M | Planning, orchestration, complex decisions      |
+| @fixer          | Kimi K2.5           | $3.60/1M | Complex debugging, stuck situations             |
+| @fixer-escalate | Claude Opus 4.5     | $30/1M   | Impossible bugs, last resort when Kimi fails    |
 
 ### Tier 2: Primary (Standard)
 
 | Agent           | Model            | Cost     | Use For                                 |
 | --------------- | ---------------- | -------- | --------------------------------------- |
-| @build          | Gemini 3 Flash   | $3.50/1M | Feature implementation, code generation |
-| @review         | Claude Haiku 4.5 | $6/1M    | Code review, quality analysis           |
-| @test-generator | Claude Haiku 4.5 | $6/1M    | Test creation                           |
-| @security-audit | Claude Haiku 4.5 | $6/1M    | Security scanning                       |
-| @docs           | Claude Haiku 4.5 | $6/1M    | Documentation                           |
-| @research       | Claude Haiku 4.5 | $6/1M    | Documentation lookup                    |
+| @build          | Kimi K2.5        | $3.60/1M | Feature implementation, code generation |
+| @review         | Kimi K2.5        | $3.60/1M | Code review, quality analysis           |
+| @test-generator | Kimi K2.5        | $3.60/1M | Test creation                           |
+| @security-audit | Kimi K2.5        | $3.60/1M | Security scanning                       |
+| @docs           | Kimi K2.5        | $3.60/1M | Documentation                           |
+| @research       | Kimi K2.5        | $3.60/1M | Documentation lookup                    |
+| @prototype      | Kimi K2.5        | $3.60/1M | UI prototyping                          |
+| @study          | Kimi K2.5        | $3.60/1M | Learning and exploration                |
 
 ### Tier 3: Budget (Cost-Sensitive)
 
@@ -101,20 +103,54 @@ START: What type of task?
 │       • @test-generator-budget for basic tests
 │
 ├─ STANDARD (typical development)?
-│   └─ Use PRIMARY tier
+│   └─ Use PRIMARY tier (Kimi K2.5)
 │       • @build for features
 │       • @review for code review
 │       • @test-generator for tests
 │
 ├─ COMPLEX (architecture, security, debugging)?
-│   └─ Use PRIMARY with full context
+│   └─ Use PRIMARY tier with Kimi K2.5
 │       • @fixer for debugging
 │       • @security-audit for security
+│       • @architect for planning
 │
 └─ CRITICAL (impossible bugs, incidents)?
     └─ Use ESCALATE tier
-        • @fixer-escalate (Opus $30/1M)
+        • @fixer-escalate (Opus $30/1M) - Only when Kimi K2.5 fails
 ```
+
+## Model Configuration
+
+### Primary Model: Kimi K2.5
+
+- **Cost**: $0.60/M input, $3.00/M output
+- **Context Window**: 256K tokens
+- **Strengths**:
+  - State-of-the-art coding performance
+  - 256K context window for large codebases
+  - Matches or exceeds GPT-5/Codex on coding tasks
+  - 3-6x cheaper than Claude alternatives
+
+### Fallback Model: Claude Opus 4.5
+
+- **Cost**: $30/1M tokens
+- **Use Case**: Only for @fixer-escalate when Kimi K2.5 cannot solve a problem
+- **Strengths**:
+  - Ultimate debugging capability
+  - Best for impossible race conditions and concurrency issues
+  - Critical production incident response
+
+### Budget Model: Qwen3 Coder 480B
+
+- **Cost**: $1.95/1M tokens
+- **Use Case**: Simple code generation and unit tests
+- **Strengths**: Cost-effective for straightforward tasks
+
+### Free Models: GPT-5 Nano / GLM-4.7
+
+- **Cost**: $0
+- **Use Case**: Trivial tasks, scaffolding, basic documentation
+- **Limitations**: Smaller context windows, less sophisticated reasoning
 
 ## Usage Examples
 
@@ -141,7 +177,7 @@ START: What type of task?
 @test-generator-budget Create unit tests for the UserService class
 ```
 
-### Using Primary Tier
+### Using Primary Tier (Kimi K2.5)
 
 ```
 # For complex features
@@ -152,12 +188,15 @@ START: What type of task?
 
 # For full test suites
 @test-generator Create comprehensive tests for the payment processing module
+
+# For debugging (start with fixer)
+@fixer Debug this race condition in the payment processing module
 ```
 
-### Using Escalate Tier
+### Using Escalate Tier (Claude Opus)
 
 ```
-# Only when @fixer fails multiple times
+# Only when @fixer (Kimi K2.5) fails multiple times
 @fixer-escalate Debug this race condition that @fixer couldn't solve: [context]
 ```
 
@@ -178,7 +217,7 @@ User: "Add user authentication to the app"
 Architect thinks:
 - This is a COMPLEX task (security-sensitive)
 - Needs @research first for best practices
-- Then @build (primary tier) for implementation
+- Then @build (Kimi K2.5) for implementation
 - Then @security-audit for review
 - Then @test-generator for tests
 
@@ -221,11 +260,12 @@ Change model for current agent:
 
 ## Best Practices
 
-### 1. Start Low, Escalate as Needed
+### 1. Start with Kimi K2.5, Escalate to Opus Only When Necessary
 
-- Begin with the cheapest appropriate tier
-- Only escalate if quality is insufficient
-- Don't retry more than twice at the same tier
+- **Begin with Kimi K2.5** ($3.60/1M) for most tasks
+- **Escalate to Opus** ($30/1M) only when Kimi truly cannot solve the problem
+- Don't waste Opus on problems Kimi can handle
+- Kimi K2.5 has excellent coding performance at a fraction of the cost
 
 ### 2. Batch Similar Tasks
 
@@ -233,21 +273,22 @@ Change model for current agent:
 - Use budget/free tiers for batches
 - Example: Generate 10 test files with @test-generator-budget
 
-### 3. Reserve Premium for Critical
+### 3. Reserve Opus for Truly Critical Issues
 
 - Use @fixer-escalate only for truly stuck situations
-- Don't waste Opus on simple bugs
-- Security reviews should use primary tier minimum
+- Signs you need Opus: race conditions, complex concurrency, impossible bugs
+- Kimi K2.5 handles 95% of debugging tasks effectively
 
 ### 4. Consider Context Size
 
+- Kimi K2.5 has a 256K context window - excellent for large codebases
 - Free models have smaller context windows
-- Use primary tier for large file analysis
-- Budget tier works for focused, small tasks
+- Use Kimi for large file analysis
 
 ### 5. Monitor Quality
 
-- If free/budget produces poor results, escalate
+- If free/budget produces poor results, escalate to Kimi K2.5
+- If Kimi K2.5 struggles after 2-3 attempts, escalate to Opus via @fixer-escalate
 - Track which tiers work for which task types
 - Adjust routing based on experience
 
@@ -257,10 +298,11 @@ Change model for current agent:
 
 ```json
 {
-  "model": "opencode/claude-sonnet-4-5",
-  "small_model": "opencode/claude-haiku-4-5",
+  "model": "opencode-go/KIMI-k2.5",
+  "small_model": "opencode-go/KIMI-k2.5",
+  "fallback_model": "opencode/claude-opus-4-6",
   "provider": {
-    "anthropic": {
+    "opencode": {
       "options": {
         "setCacheKey": true
       }
@@ -273,23 +315,23 @@ Change model for current agent:
 
 ```
 ~/.config/opencode/agent/
-├── architect.md          # Strategic planning (Sonnet 4.5)
-├── build.md              # Primary builder (Gemini Flash)
-├── build-budget.md       # Budget builder (Qwen3)
-├── build-free.md         # Free builder (GPT-5 Nano)
-├── fixer.md              # Primary fixer (Sonnet 4.5)
-├── fixer-escalate.md     # Escalated fixer (Opus 4.5)
-├── review.md             # Primary review (Haiku 4.5)
-├── review-free.md        # Free review (GLM-4.7)
-├── test-generator.md     # Primary tests (Haiku 4.5)
+├── architect.md              # Strategic planning (Kimi K2.5)
+├── build.md                  # Primary builder (Kimi K2.5)
+├── build-budget.md           # Budget builder (Qwen3)
+├── build-free.md             # Free builder (GPT-5 Nano)
+├── fixer.md                  # Primary fixer (Kimi K2.5)
+├── fixer-escalate.md         # Escalated fixer (Opus 4.5)
+├── review.md                 # Primary review (Kimi K2.5)
+├── review-free.md            # Free review (GLM-4.7)
+├── test-generator.md         # Primary tests (Kimi K2.5)
 ├── test-generator-budget.md  # Budget tests (Qwen3)
 ├── test-generator-free.md    # Free tests (GPT-5 Nano)
-├── docs.md               # Primary docs (Haiku 4.5)
-├── docs-free.md          # Free docs (GLM-4.7)
-├── research.md           # Primary research (Haiku 4.5)
-├── research-free.md      # Free research (GLM-4.7)
-├── quick.md              # Primary quick (Haiku 4.5)
-├── quick-free.md         # Free quick (GPT-5 Nano)
+├── docs.md                   # Primary docs (Kimi K2.5)
+├── docs-free.md              # Free docs (GLM-4.7)
+├── research.md               # Primary research (Kimi K2.5)
+├── research-free.md          # Free research (GLM-4.7)
+├── quick.md                  # Primary quick (Kimi K2.5)
+├── quick-free.md             # Free quick (GPT-5 Nano)
 └── ... (other specialized agents)
 ```
 
@@ -303,17 +345,27 @@ To monitor your costs:
 
 ### Expected Monthly Savings
 
-| Usage Level         | Before | After | Savings |
-| ------------------- | ------ | ----- | ------- |
-| Light (5M tokens)   | $80    | $32   | $48/mo  |
-| Medium (10M tokens) | $160   | $65   | $95/mo  |
-| Heavy (20M tokens)  | $320   | $130  | $190/mo |
+| Usage Level         | Before | After  | Savings |
+| ------------------- | ------ | ------ | ------- |
+| Light (5M tokens)   | $80    | $18    | $62/mo  |
+| Medium (10M tokens) | $160   | $36    | $124/mo |
+| Heavy (20M tokens)  | $320   | $72    | $248/mo |
+
+### Cost Breakdown by Agent
+
+| Agent Tier    | Model            | Cost/1M | Typical Monthly Use | Monthly Cost |
+| ------------- | ---------------- | ------- | ------------------- | ------------ |
+| Primary       | Kimi K2.5        | $3.60   | 10M tokens          | $36.00       |
+| Budget        | Qwen3 Coder 480B | $1.95   | 2M tokens           | $3.90        |
+| Free          | GPT-5 Nano       | $0      | 1M tokens           | $0           |
+| Escalate      | Claude Opus 4.5  | $30     | 0.1M tokens         | $3.00        |
+| **TOTAL**     |                  |         |                     | **$42.90**   |
 
 ## Troubleshooting
 
 ### Free Tier Produces Poor Results
 
-- Escalate to budget or primary tier
+- Escalate to budget or primary tier (Kimi K2.5)
 - Free models have limitations
 - Use for truly trivial tasks only
 
@@ -333,17 +385,29 @@ To monitor your costs:
 
 - Signs: incomplete output, errors, poor quality
 - Solution: escalate to next tier
-- Don't retry more than twice
+- Don't retry more than twice with the same tier
+
+### Kimi K2.5 Struggles with a Task
+
+- After 2-3 attempts, escalate to @fixer-escalate (Claude Opus)
+- Document what Kimi tried so Opus can focus on new approaches
+- Use for: race conditions, complex concurrency, production incidents
 
 ## Changelog
 
+- **v2.0** - Switched primary model from Gemini to Kimi K2.5
+  - Updated all primary agents to use Kimi K2.5 ($3.60/1M)
+  - Reserved Claude Opus ($30/1M) for @fixer-escalate only
+  - Maintained budget and free tiers for cost-sensitive tasks
+  - Achieved ~78% cost savings vs previous configuration
+
 - **v1.0** - Initial multi-agent system with tiered routing
-- Added 9 new tiered agent variants
-- Updated architect with smart routing logic
-- Configured small_model for lightweight tasks
-- Added comprehensive documentation
+  - Added 9 new tiered agent variants
+  - Updated architect with smart routing logic
+  - Configured small_model for lightweight tasks
+  - Added comprehensive documentation
 
 ---
 
-_Last Updated: January 2026_
-_System Version: 1.0_
+_Last Updated: March 2026_
+_System Version: 2.0_

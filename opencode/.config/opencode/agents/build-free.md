@@ -1,7 +1,7 @@
 ---
 description: Free build agent using GPT-5 Nano - for scaffolding and trivial tasks only
 mode: subagent
-model: opencode/gpt-5-nano
+model: opencode-go/KIMI-k2.5
 temperature: 0.3
 tools:
   websearch: true

@@ -1,7 +1,7 @@
 ---
 description: Expert debugger for fixing bugs and unblocking other agents
 mode: subagent
-model: opencode/claude-sonnet-4-5
+model: opencode-go/KIMI-k2.5
 temperature: 0.3
 tools:
   websearch: true
@@ -15,7 +15,7 @@ This agent is optimized for cost-efficiency while maintaining quality.
 
 ### Model Tiers
 - **Primary**: claude-sonnet-4-5 ($18/1M) - Default for this agent
-- **Fallback**: claude-haiku-4-5 ($6/1M) - When primary unavailable
+- **Fallback**: opencode/kimi-k2.5 ($3.60/1M) - Cost-effective alternative with excellent debugging
 - **Budget**: Not recommended for debugging
 - **Free**: Not recommended for debugging
 

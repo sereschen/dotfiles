@@ -1,7 +1,7 @@
 ---
 description: Free quick agent - for trivial edits and formatting
 mode: primary
-model: opencode/gpt-5-nano
+model: opencode-go/KIMI-k2.5
 temperature: 0.2
 ---
 

@@ -1,7 +1,7 @@
 ---
 description: Free test generator - for basic test scaffolding only
 mode: subagent
-model: opencode/gpt-5-nano
+model: opencode-go/KIMI-k2.5
 temperature: 0.3
 tools:
   write: true
