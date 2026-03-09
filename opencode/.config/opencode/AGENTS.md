@@ -60,6 +60,7 @@ Model settings are configured in:
 `~/dotfiles/opencode/.config/opencode/opencode.json`
 
 Individual agents are configured with fallback models in their agent definitions. The global configuration uses the primary model, and agents specify their fallback chain in their frontmatter:
+
 ```yaml
 ---
 model:
@@ -86,6 +87,7 @@ To use Kimi K2.5 as a fallback:
 Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
 
 ### Use Gemini Pro (Free) For:
+
 - ✅ Code reviews and quality checks (@review)
 - ✅ Research and documentation lookup (@research)
 - ✅ Test generation (@test-generator)
@@ -96,6 +98,7 @@ Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
 - ✅ Main development work (@build)
 
 ### Use Gemini Flash (Free) For:
+
 - ✅ Quick fixes and small edits (@quick)
 - ✅ Documentation writing (@docs)
 - ✅ TypeScript type checking (@typescript-checker)
@@ -106,6 +109,7 @@ Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
 - ✅ Learning and exploration (@study)
 
 ### Use Kimi K2.5 ($3.60/M total) For:
+
 - 🎯 Fallback when Gemini hits rate limits or errors
 - 🎯 Complex coding tasks requiring deep reasoning
 - 🎯 Long context tasks (256K tokens)
@@ -113,16 +117,19 @@ Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
 - 🎯 When Gemini quality is insufficient
 
 ### Use Claude Sonnet ($18/1M) For:
+
 - 🎯 Strategic architecture planning (@architect)
 - 🎯 Complex debugging (@fixer) - when Kimi also struggles
 - 🎯 Multi-agent orchestration
 
 ### Use Claude Opus ($30/1M) Only For:
+
 - 🚨 Impossible bugs after @fixer fails (@fixer-escalate)
 - 🚨 Critical production incidents
 - 🚨 Complex race conditions and concurrency issues
 
 ### Cost Optimization Strategy:
+
 1. **Default to Gemini** - Start with free Gemini models
 2. **Automatic Kimi Fallback** - Seamless fallback when Gemini struggles
 3. **Escalate to Claude** - Only when Gemini AND Kimi can't handle complexity
@@ -130,6 +137,7 @@ Since Gemini 3 models are free via Google OAuth, prioritize them for most tasks:
 5. **Monitor Quality** - If models produce poor results, escalate immediately
 
 ### Expected Benefits:
+
 - **Zero Cost Primary**: Gemini models are free with Google OAuth
 - **Seamless Fallback**: Kimi automatically takes over when needed
 - **Cost Effective**: Kimi is 3-6x cheaper than Claude/Codex alternatives
