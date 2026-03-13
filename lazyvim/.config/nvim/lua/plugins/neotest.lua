@@ -12,6 +12,9 @@ return {
       "thenbe/neotest-playwright",
       dependencies = "nvim-telescope/telescope.nvim",
     },
+    {
+      "nvim-neotest/neotest-jest",
+    },
   },
 
   config = function()
@@ -28,6 +31,7 @@ return {
           },
         }),
         require("neotest-bun"),
+        require("neotest-jest"),
       },
     })
   end,

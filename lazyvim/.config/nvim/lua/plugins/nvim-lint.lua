@@ -11,6 +11,13 @@ return {
             "-",
           },
         },
+        ["markdownlint-cli2"] = {
+          args = {
+            "--config",
+            '{"MD013": false}',
+            "--",
+          },
+        },
       },
     },
   },

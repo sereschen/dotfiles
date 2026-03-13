@@ -118,6 +118,44 @@
       "pluginName": "example-skills",
       "installedAt": "2026-03-09T23:51:16.683Z",
       "updatedAt": "2026-03-09T23:51:16.683Z"
+    },
+    "cognito": {
+      "source": "itsmostafa/aws-agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/itsmostafa/aws-agent-skills.git",
+      "skillPath": "skills/cognito/SKILL.md",
+      "skillFolderHash": "f0feb2bd0a5c0521425fa8993d940ad4429fff3e",
+      "pluginName": "aws-agent-skills",
+      "installedAt": "2026-03-11T20:46:51.613Z",
+      "updatedAt": "2026-03-11T20:46:51.613Z"
+    },
+    "aws-ses-best-practices": {
+      "source": "wraps-team/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/wraps-team/skills.git",
+      "skillPath": "skills/aws-ses-best-practices/SKILL.md",
+      "skillFolderHash": "176c0cc5abd28f5b353bc0475bf7f4e45263d2ed",
+      "installedAt": "2026-03-11T20:46:52.479Z",
+      "updatedAt": "2026-03-11T20:46:52.479Z"
+    },
+    "sns": {
+      "source": "itsmostafa/aws-agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/itsmostafa/aws-agent-skills.git",
+      "skillPath": "skills/sns/SKILL.md",
+      "skillFolderHash": "6fea90689ad1b5c24ea9090590ad565aa560a591",
+      "pluginName": "aws-agent-skills",
+      "installedAt": "2026-03-11T20:46:53.879Z",
+      "updatedAt": "2026-03-11T20:46:53.879Z"
+    },
+    "aws-lambda-typescript-integration": {
+      "source": "giuseppe-trisciuoglio/developer-kit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/giuseppe-trisciuoglio/developer-kit.git",
+      "skillPath": "plugins/developer-kit-typescript/skills/aws-lambda-typescript-integration/SKILL.md",
+      "skillFolderHash": "aa1ad0661a796d3fd28d304a7d34b8cdc13df097",
+      "installedAt": "2026-03-11T20:46:59.456Z",
+      "updatedAt": "2026-03-11T20:46:59.456Z"
     }
   },
   "dismissed": {
