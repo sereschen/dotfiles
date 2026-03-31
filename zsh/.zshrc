@@ -53,7 +53,6 @@ if command -v fd &> /dev/null; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 fi
 
-export NVM_DIR=~/.nvm
 
 # macOS-specific aliases
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -64,8 +63,11 @@ fi
 alias reload-zsh="source ~/.zshrc"
 alias edit-zsh="nvim ~/.zshrc"
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+
 # macOS-specific paths for OpenSSL and PostgreSQL
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/usr/local/opt/openssl/bin:$PATH"
@@ -124,3 +126,7 @@ if command -v uv &> /dev/null; then
   eval "$(uv generate-shell-completion zsh)"
   eval "$(uvx --generate-shell-completion zsh)"
 fi
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Added by Windsurf
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
