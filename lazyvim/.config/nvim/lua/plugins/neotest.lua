@@ -15,6 +15,23 @@ return {
     {
       "nvim-neotest/neotest-jest",
     },
+    "nvim-neotest/nvim-nio",
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+    {
+      "nvim-treesitter/nvim-treesitter", -- Optional, but recommended
+      branch = "main", -- NOTE; not the master branch!
+      build = function()
+        vim.cmd(":TSUpdate go")
+      end,
+    },
+    {
+      "fredrikaverpil/neotest-golang",
+      version = "*", -- Optional, but recommended; track releases
+      build = function()
+        vim.system({ "go", "install", "gotest.tools/gotestsum@latest" }):wait() -- Optional, but recommended
+      end,
+    },
   },
 
   config = function()
@@ -43,7 +60,7 @@ return {
     local vitest_files = { "vitest.config.ts", "vitest.config.js", "vitest.config.mts", "vitest.config.mjs" }
     if file_exists(vitest_files) then
       local vitest_opts = {
-        filter_dir = function(name, rel_path, root)
+        filter_dir = function(name, _, _)
           return name ~= "node_modules" and name ~= "e2e" and name ~= "playwright"
         end,
       }
@@ -71,7 +88,7 @@ return {
         },
       })
 
-      pw_adapter.filter_dir = function(name, rel_path, root)
+      pw_adapter.filter_dir = function(name, rel_path, _)
         if name == "node_modules" then
           return false
         end
@@ -96,6 +113,18 @@ return {
       table.insert(adapters, require("neotest-jest"))
     end
 
+    -- Go adapter: enabled if go.mod exists
+    local go_files = { "go.mod" }
+    if file_exists(go_files) then
+      table.insert(
+        adapters,
+        require("neotest-golang")({
+          recursive_run = true,
+          runner = "gotestsum",
+        })
+      )
+    end
+
     require("neotest").setup({
       adapters = adapters,
     })
@@ -106,6 +135,7 @@ return {
       function()
         require("neotest").output_panel.clear()
       end,
+      desc = "Clear neotest output panel",
     },
   },
   env = { TZ = "UTC" },

@@ -1,5 +1,6 @@
 return {
   "NickvanDyke/opencode.nvim",
+  cond = vim.fn.executable("opencode") == 1,
   dependencies = {
     -- Recommended for `ask()` and `select()`.
     -- Required for `toggle()`.
