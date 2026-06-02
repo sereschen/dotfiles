@@ -1,0 +1,15 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+blacklist = ["scratch"]
+
+[default_session]
+
+[[window]]
+name = "editor"
+startup_script = "nvim"
+
+[[window]]
+name = "ai"
+startup_script = "claude"
+
+[[window]]
+name = "server"

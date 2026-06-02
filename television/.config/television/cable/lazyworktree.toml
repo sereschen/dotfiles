@@ -1,0 +1,37 @@
+[metadata]
+name = "worktree"
+description = "Manage git worktrees with lazyworktree"
+requirements = ["lazyworktree"]
+
+[source]
+command = ["lazyworktree ls --pristine", "lazyworktree ls"]
+output = "{split: :0}"
+
+[preview]
+command = "cd '{}' && git log --oneline -10 --color=always && echo && git status --short"
+
+[keybindings]
+enter = "actions:open"
+ctrl-n = ["actions:create_from_pr", "actions:open"]
+ctrl-b = ["actions:create_from_branch", "actions:open"]
+ctrl-d = ["actions:delete", "reload_source"]
+
+[actions.open]
+description = "Open worktree tmux session (nvim + claude)"
+command = "lazyworktree exec --workspace '{}' --key t"
+mode = "execute"
+
+[actions.create_from_pr]
+description = "Create worktree from a GitHub PR"
+command = "lazyworktree create --from-pr-interactive"
+mode = "fork"
+
+[actions.create_from_branch]
+description = "Create worktree from a branch"
+command = "lazyworktree create"
+mode = "fork"
+
+[actions.delete]
+description = "Delete the selected worktree"
+command = ["lazyworktree delete '{}'", "reload_source"]
+mode = "fork"

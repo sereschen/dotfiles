@@ -21,10 +21,6 @@ if command -v pyenv &> /dev/null; then
   eval "$(pyenv init -)"
 fi
 
-# Zoxide - optional
-if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init zsh --cmd cd)"
-fi
 
 # FZF - optional
 if command -v fzf &> /dev/null; then
@@ -47,3 +43,10 @@ if command -v sesh &> /dev/null; then
   fpath=( $HOME/.zsh/completions $fpath )
   autoload -U compinit && compinit
 fi
+
+
+if command -v tv &> /dev/null; then
+    eval "$(tv init zsh)"
+fi
+
+

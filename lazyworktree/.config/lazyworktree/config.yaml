@@ -1,3 +1,6 @@
+init_commands:
+  - sync-worktree-config
+
 pr_branch_name_template: "wt-{number}-{generated}"
 issue_branch_name_template: "wt-{number}-{generated}"
 branch_name_script: "claude -p 'Generate a short, kebab-case branch name (max 20 chars, no prefix) summarizing this PR/issue. Output only the name, nothing else.'"
