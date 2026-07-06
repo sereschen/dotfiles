@@ -11,11 +11,29 @@ custom_commands:
       description: Tmux with layout
       show_help: true
       tmux:
-        session_name: "wt:$WORKTREE_NAME"
+        session_name: "$WORKTREE_NAME"
         attach: true
         on_exists: switch
         windows:
           - name: editor
             command: nvim
-          - name: AI
+          - name: ai
             command: claude
+          - name: server
+    # Same layout as `t`, but the ai window starts a fresh agent that implements
+    # the ticket from a hand-off prompt written to /tmp/kickoff-<name>.md first.
+    # Use when kicking a ticket off for an agent to implement rather than opening
+    # an empty agent session.
+    ti:
+      description: Tmux with layout + Claude implements the ticket
+      show_help: true
+      tmux:
+        session_name: "$WORKTREE_NAME"
+        attach: true
+        on_exists: switch
+        windows:
+          - name: editor
+            command: nvim
+          - name: ai
+            command: claude "Read /tmp/kickoff-$WORKTREE_NAME.md and follow it."
+          - name: server

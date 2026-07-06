@@ -17,7 +17,7 @@ This symlinks `.zshrc` → `~/.zshrc` and `.zshrc.d/` → `~/.zshrc.d/`.
 | `.zshrc` | Entry point — sources all `~/.zshrc.d/*.zsh` files |
 | `.zshrc.d/00.local.env.zsh` | Local secrets (gitignored via `*.local.*`) |
 | `.zshrc.d/10.core.zsh` | Completions, prompt_subst, case-insensitive matching |
-| `.zshrc.d/20.env.zsh` | XDG, EDITOR, NVM_DIR, GOPRIVATE |
+| `.zshrc.d/20.env.zsh` | XDG, EDITOR, NVM_DIR |
 | `.zshrc.d/30.paths.zsh` | Homebrew, pyenv, go, bun, local bin PATH entries |
 | `.zshrc.d/40.integrations.zsh` | Tool init: starship, zsh-autosuggestions, nvm, fzf, uv, sesh, tv |
 | `.zshrc.d/50.aliases.zsh` | Conditional aliases (bat→cat, eza→ls, tree→la) |

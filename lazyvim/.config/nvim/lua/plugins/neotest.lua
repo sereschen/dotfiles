@@ -65,8 +65,8 @@ return {
         end,
       }
 
-      local home = os.getenv("HOME") or ""
-      if root == home .. "/projects/grit/portal-fe" then
+      -- Use `yarn test` in yarn-based projects (project-agnostic)
+      if file_exists({ "yarn.lock" }) then
         vitest_opts.vitestCommand = "yarn test"
       end
 

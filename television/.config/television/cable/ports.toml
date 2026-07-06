@@ -1,0 +1,18 @@
+[metadata]
+name = "ports"
+description = "List processes listening on TCP ports and kill selected ones"
+
+[source]
+command = "/usr/sbin/lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | tail -n +2 | awk '{split($9,a,\":\"); printf \"%-6s %-8s %s\\n\", a[length(a)], $2, $1}' | sort -n -u"
+output = "{split: :0}"
+
+[preview]
+command = "ps -p $(/usr/sbin/lsof -ti tcp:'{split: :0}' -sTCP:LISTEN | head -1) -o pid,ppid,user,%cpu,%mem,stat,start,time,command && echo && /usr/sbin/lsof -iTCP:'{split: :0}' -sTCP:LISTEN -P -n 2>/dev/null"
+
+[keybindings]
+ctrl-d = ["actions:kill", "reload_source"]
+
+[actions.kill]
+description = "Kill process on selected port"
+command = "kill $(/usr/sbin/lsof -ti tcp:'{split: :0}' -sTCP:LISTEN)"
+mode = "fork"

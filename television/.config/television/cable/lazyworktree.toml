@@ -4,7 +4,11 @@ description = "Manage git worktrees with lazyworktree"
 requirements = ["lazyworktree"]
 
 [source]
-command = ["lazyworktree ls --pristine", "lazyworktree ls"]
+command = [
+  "lazyworktree ls --pristine",
+  "git branch --list",
+  "gh pr list --state open --head main --limit 20",
+]
 output = "{split: :0}"
 
 [preview]
@@ -23,12 +27,12 @@ mode = "execute"
 
 [actions.create_from_pr]
 description = "Create worktree from a GitHub PR"
-command = "lazyworktree create --from-pr-interactive"
+command = "lazyworktree create --from-pr-interactive "
 mode = "fork"
 
 [actions.create_from_branch]
 description = "Create worktree from a branch"
-command = "lazyworktree create"
+command = "lazyworktree create --from-branch '{}'"
 mode = "fork"
 
 [actions.delete]

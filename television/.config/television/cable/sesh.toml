@@ -6,8 +6,8 @@ requirements = ["sesh", "fd"]
 
 [source]
 command = [
-  "sesh list --icons",
   "sesh list -t --icons",
+  "sesh list --icons",
   "sesh list -c --icons",
   "sesh list -z --icons",
 ]
@@ -28,6 +28,6 @@ command = "sesh connect '{strip_ansi|split: :1..|join: }'"
 mode = "execute"
 
 [actions.kill_session]
-description = "Kill selected tmux session (press Ctrl+r to reload)"
+description = "Kill selected tmux session"
 command = "tmux kill-session -t '{strip_ansi|split: :1..|join: }'"
 mode = "fork"
