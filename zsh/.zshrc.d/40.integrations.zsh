@@ -15,7 +15,31 @@ _zsh_cache_init() {
   source "$cache_file"
 }
 
-_zsh_cache_init starship "$ZSH_INIT_CACHE_DIR/starship.zsh" starship init zsh
+# Starship's generated zsh integration invokes the binary for PROMPT2 while the
+# file is sourced and invokes it again for RPROMPT on every draw, even though
+# this setup does not use a right prompt. Cache a left-only integration and use
+# the current default continuation prompt as a static zsh prompt instead.
+_zsh_cache_starship_init() {
+  local cache_file="$ZSH_INIT_CACHE_DIR/starship-left-only.zsh"
+  local generated line
+
+  (( $+commands[starship] )) || return 0
+  if [[ ! -s "$cache_file" || "${commands[starship]}" -nt "$cache_file" ]]; then
+    generated=$(starship init zsh) || return
+    {
+      while IFS= read -r line; do
+        [[ "$line" == PROMPT2=* ]] || print -r -- "$line"
+      done <<< "$generated"
+    } >| "$cache_file"
+  fi
+
+  source "$cache_file"
+  typeset -g RPROMPT=''
+  typeset -g PROMPT2=$'%{\e[90m%}∙%{\e[0m%} '
+}
+
+_zsh_cache_starship_init
+unfunction _zsh_cache_starship_init
 
 # macOS-specific setup with Homebrew. Use Homebrew's stable prefix directly to
 # avoid spawning `brew --prefix` in every shell.
