@@ -1,6 +1,11 @@
-# Ensure Homebrew is in PATH for non-login shells like tmux panes.
-if [[ "$OSTYPE" == "darwin"* ]] && [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+# Ensure Homebrew is available to non-login shells such as tmux panes without
+# running `brew shellenv` during every shell startup.
+if [[ "$OSTYPE" == "darwin"* ]] && [[ -d /opt/homebrew ]]; then
+  export HOMEBREW_PREFIX=/opt/homebrew
+  export HOMEBREW_CELLAR=/opt/homebrew/Cellar
+  export HOMEBREW_REPOSITORY=/opt/homebrew
+  path=(/opt/homebrew/bin /opt/homebrew/sbin $path)
+  typeset -U path PATH
 fi
 
 # macOS-specific paths for OpenSSL and PostgreSQL.

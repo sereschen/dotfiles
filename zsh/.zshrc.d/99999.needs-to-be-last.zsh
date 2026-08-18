@@ -1,5 +1,5 @@
+# Zoxide - optional. This stays last because it defines the cd wrapper.
+_zsh_cache_init zoxide "$ZSH_INIT_CACHE_DIR/zoxide.zsh" zoxide init zsh --cmd cd
 
-# Zoxide - optional
-if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init zsh --cmd cd)"
-fi
+unfunction _zsh_cache_init
+unset ZSH_INIT_CACHE_DIR
