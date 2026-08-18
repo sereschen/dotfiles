@@ -18,6 +18,11 @@ if [ -d "$HOME/.bun" ]; then
   export PATH="$BUN_INSTALL/bin:$PATH"
 fi
 
+# Yarn Classic global binaries - optional
+if [[ -d "$HOME/.yarn/bin" ]] && [[ ":$PATH:" != *":$HOME/.yarn/bin:"* ]]; then
+  export PATH="$HOME/.yarn/bin:$PATH"
+fi
+
 # Pyenv - optional
 if command -v pyenv &> /dev/null; then
   export PYENV_ROOT="$HOME/.pyenv"

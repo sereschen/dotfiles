@@ -3,7 +3,7 @@ init_commands:
 
 pr_branch_name_template: "wt-{number}-{generated}"
 issue_branch_name_template: "wt-{number}-{generated}"
-branch_name_script: "claude -p 'Generate a short, kebab-case branch name (max 20 chars, no prefix) summarizing this PR/issue. Output only the name, nothing else.'"
+branch_name_script: "pi -p --model truefoundry-gemini-vertex/google-vertexai/gemini-3-flash-preview 'Generate a short, kebab-case branch name (max 20 chars, no prefix) summarizing this PR/issue. Output only the name, nothing else.'"
 
 custom_commands:
   universal:
@@ -18,14 +18,13 @@ custom_commands:
           - name: editor
             command: nvim
           - name: ai
-            command: claude
+            command: pi
           - name: server
-    # Same layout as `t`, but the ai window starts a fresh agent that implements
-    # the ticket from a hand-off prompt written to /tmp/kickoff-<name>.md first.
-    # Use when kicking a ticket off for an agent to implement rather than opening
-    # an empty agent session.
+    # Same layout as `t`, but the ai window starts a fresh Pi agent that implements
+    # the ticket from a hand-off prompt written to /tmp/grit-kickoff-<name>.md first.
+    # For a pinned provider/model profile, prefer `pi-kickoff` from grit-ai.
     ti:
-      description: Tmux with layout + Claude implements the ticket
+      description: Tmux with layout + Pi implements the ticket
       show_help: true
       tmux:
         session_name: "$WORKTREE_NAME"
@@ -35,5 +34,5 @@ custom_commands:
           - name: editor
             command: nvim
           - name: ai
-            command: claude "Read /tmp/kickoff-$WORKTREE_NAME.md and follow it."
+            command: pi "Read /tmp/grit-kickoff-$WORKTREE_NAME.md and follow it."
           - name: server
