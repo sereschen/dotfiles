@@ -74,10 +74,12 @@ truncation_symbol = "…/"
 "Pictures" = " "
 "Developer" = "󰲋 "
 
-[sudo]
-symbol = ""
-format = "[$symbol  ]($style)"
-disabled = true
+# Sudo is disabled by default. Uncomment this section to show an indicator
+# while sudo credentials are cached; `$sudo` already remains in `format`.
+# [sudo]
+# symbol = ""
+# format = "[$symbol  ]($style)"
+# disabled = false
 
 
 [hostname]
