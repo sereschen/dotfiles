@@ -46,7 +46,7 @@ detect and use them if available:
    ln -s ~/.dotfiles/tmux/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
    
    # Example for nvim
-   ln -s ~/.dotfiles/nvim/.config/nvim ~/.config/nvim
+   ln -s ~/.dotfiles/lazyvim/.config/nvim ~/.config/nvim
    ```
 
 3. Install package manager (if not present):
@@ -64,7 +64,7 @@ detect and use them if available:
 dotfiles/
 ├── zsh/              # Zsh shell configuration
 ├── tmux/             # Tmux terminal multiplexer
-├── nvim/             # Neovim editor config
+├── lazyvim/          # Neovim editor config
 ├── starship/         # Starship prompt config
 ├── nix-darwin/       # nix-darwin configuration (macOS)
 └── [other tools]/    # Additional tool configurations
