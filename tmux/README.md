@@ -102,3 +102,6 @@ for every machine.
 
 Stow the `television`, `sesh`, and `lazyworktree` packages separately to install
 their configurations; `setup.sh` currently stows only `zsh`, `tmux`, and `lazyvim`.
+The tmux server preserves its inherited `PATH` and prepends
+`$HOME/.config/lazyworktree/bin` and `$HOME/.local/bin`, so popup commands can use
+the lazyworktree wrapper without requiring an interactive shell to load `.zshrc`.

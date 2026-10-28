@@ -57,3 +57,8 @@ export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
+
+if [[ -d "$HOME/.config/lazyworktree/bin" ]]; then
+  path=("$HOME/.config/lazyworktree/bin" $path)
+  typeset -U path PATH
+fi

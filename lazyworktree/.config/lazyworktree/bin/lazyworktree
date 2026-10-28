@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+workspace="$HOME/projects/grit"
+explicit_root=false
+
+for arg in "$@"; do
+  case "$arg" in
+    --worktree-dir|--worktree-dir=*|-w|-w?*|lw.worktree_dir=*|--config=lw.worktree_dir=*)
+      explicit_root=true
+      ;;
+  esac
+done
+
+# Lazyworktree 1.45.0 expects lw.worktree_dir, which Git rejects as a config key.
+if [[ "$explicit_root" == false ]]; then
+  if common_git=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null); then
+    case "$common_git" in
+      "$workspace"/*)
+        exec /opt/homebrew/bin/lazyworktree --worktree-dir "$workspace/.worktrees" "$@"
+        ;;
+    esac
+  fi
+fi
+
+exec /opt/homebrew/bin/lazyworktree "$@"
