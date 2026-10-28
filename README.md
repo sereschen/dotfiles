@@ -10,7 +10,7 @@ Essential tools required for full functionality:
 - `git` - Version control
 - `zsh` - Shell (with oh-my-zsh optional)
 - `nvim` - Neovim 0.9+ (text editor)
-- `tmux` - Terminal multiplexer
+- `tmux` 3.8+ - Terminal multiplexer (the configuration uses its built-in theme palette)
 - `starship` - Cross-shell prompt
 
 ## Optional Tools
@@ -87,7 +87,9 @@ at the end of `.zshrc`. This allows local customizations without modifying versi
 ## Troubleshooting
 
 - **Slow shell startup**: Run `time zsh -i -c exit` to profile startup time
-- **Tmux colors not working**: Ensure `default-terminal` is set to `screen-256color`
+- **Tmux colors not working**: Keep `default-terminal` set to `tmux-256color` and
+  reload the configuration with `Ctrl-a`, then `r`. The tmux 3.8+ palette is pinned
+  to Catppuccin Mocha; see [the tmux module](tmux/README.md#colors-and-terminal-support).
 - **FZF not working**: Verify `fd` is installed for optimal `FZF_DEFAULT_COMMAND`
 
 ## License

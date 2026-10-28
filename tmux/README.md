@@ -27,6 +27,22 @@ This symlinks `.config/tmux/tmux.conf` → `~/.config/tmux/tmux.conf`.
 - `tmux-256color` for applications inside tmux
 - Ghostty truecolor and synchronized-output support
 
+## Colors and terminal support
+
+The configuration requires **tmux 3.8 or newer** for its built-in theme options.
+The Catppuccin plugin styles the status line and panes. The separate
+`dark-theme-*` palette styles tmux's built-in popups, menus, and other UI with
+Catppuccin Mocha colors. `theme dark` prevents terminal light-theme detection from
+selecting a mismatched palette.
+
+Applications inside tmux use `TERM=tmux-256color`. Ghostty's outer terminal is
+configured separately with `RGB` and `sync` terminal features, preserving truecolor
+and synchronized drawing for applications such as Pi.
+
+After changing the configuration, press `Ctrl-a`, then `r` to reload it. Close and
+reopen existing popups to check their colors; the palette change does not require
+restarting the tmux server.
+
 ## Plugins (managed by TPM)
 
 | Plugin | Purpose |
@@ -45,7 +61,7 @@ This symlinks `.config/tmux/tmux.conf` → `~/.config/tmux/tmux.conf`.
 ## Dependencies
 
 ### Required (brew)
-- `tmux`
+- `tmux` 3.8+
 
 ### Required (git clone)
 - **TPM** — must be cloned manually:
