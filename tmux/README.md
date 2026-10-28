@@ -27,6 +27,22 @@ This symlinks `.config/tmux/tmux.conf` → `~/.config/tmux/tmux.conf`.
 - `tmux-256color` for applications inside tmux
 - Ghostty truecolor and synchronized-output support
 
+## Popup bindings
+
+Press the prefix (`Ctrl-a`), then the listed key. All popups use tmux's built-in
+`display-popup` at 80% width and 70% height; Floax is no longer used.
+
+| Key | Command | Purpose |
+|-----|---------|---------|
+| `o` | `tv sesh` | Browse and connect to sessions |
+| `p` | `tv ports` | Inspect listening TCP ports and kill selected processes |
+| `t` | `tv worktree` | Manage worktrees from the current pane's directory |
+
+The Sesh and Ports popups start in `$HOME`; Worktrees starts in the current pane's
+working directory. Channel definitions live in
+`television/.config/television/cable/` (the `worktree` channel is defined in
+`lazyworktree.toml`).
+
 ## Colors and terminal support
 
 The configuration requires **tmux 3.8 or newer** for its built-in theme options.
@@ -56,7 +72,6 @@ restarting the tmux server.
 | `alberti42/tmux-fzf-links` | Fuzzy-find links in pane |
 | `christoomey/vim-tmux-navigator` | Seamless vim/tmux pane nav |
 | `omerxx/catppuccin-tmux` | Catppuccin theme |
-| `omerxx/tmux-floax` | Floating pane popups |
 
 ## Dependencies
 
@@ -70,6 +85,11 @@ restarting the tmux server.
   ```
   Then press `prefix + I` inside tmux to install plugins.
 
-### Optional (brew)
-- `sesh` — used in `bind o` popup for session switching
-- `television` — used in `bind o` (tv sesh) and `bind t` (tv worktree)
+### Popup dependencies
+- `television` — runs all three popup pickers
+- `sesh` and `fd` — required by the session channel
+- `lazyworktree` — required by the worktree channel; `gh` is used for its PR actions
+- `lsof` and `ps` — required by the ports channel (provided by macOS)
+
+Stow the `television`, `sesh`, and `lazyworktree` packages separately to install
+their configurations; `setup.sh` currently stows only `zsh`, `tmux`, and `lazyvim`.
