@@ -24,6 +24,8 @@ This symlinks `.config/tmux/tmux.conf` → `~/.config/tmux/tmux.conf`.
 - Status bar at top (dual-line)
 - Base index 1
 - Session restore on startup via continuum
+- `tmux-256color` for applications inside tmux
+- Ghostty truecolor and synchronized-output support
 
 ## Plugins (managed by TPM)
 
