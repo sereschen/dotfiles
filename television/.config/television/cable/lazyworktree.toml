@@ -21,7 +21,7 @@ ctrl-b = ["actions:create_from_branch", "actions:open"]
 ctrl-d = ["actions:delete", "reload_source"]
 
 [actions.open]
-description = "Open worktree tmux session (nvim + claude)"
+description = "Open worktree tmux session (Pi only)"
 command = "lazyworktree exec --workspace '{}' --key t"
 mode = "execute"
 

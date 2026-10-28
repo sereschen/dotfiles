@@ -8,31 +8,22 @@ branch_name_script: "pi -p --model truefoundry-gemini-vertex/google-vertexai/gem
 custom_commands:
   universal:
     t:
-      description: Tmux with layout
+      description: Tmux with Pi only
       show_help: true
       tmux:
         session_name: "$WORKTREE_NAME"
         attach: true
         on_exists: switch
         windows:
-          - name: editor
-            command: nvim
           - name: ai
             command: pi
-          - name: server
-    # Same layout as `t`, but the ai window starts a fresh Pi agent that implements
-    # the ticket from a hand-off prompt written to /tmp/grit-kickoff-<name>.md first.
-    # For a pinned provider/model profile, prefer `pi-kickoff` from grit-ai.
     ti:
-      description: Tmux with layout + Pi implements the ticket
+      description: Tmux with Pi implements the ticket
       show_help: true
       tmux:
         session_name: "$WORKTREE_NAME"
         attach: true
         on_exists: switch
         windows:
-          - name: editor
-            command: nvim
           - name: ai
             command: pi "Read /tmp/grit-kickoff-$WORKTREE_NAME.md and follow it."
-          - name: server

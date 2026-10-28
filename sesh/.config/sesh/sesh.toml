@@ -2,14 +2,5 @@
 blacklist = ["scratch"]
 
 [default_session]
-
-[[window]]
-name = "editor"
-startup_script = "nvim"
-
-[[window]]
-name = "ai"
-startup_script = "claude"
-
-[[window]]
-name = "server"
+startup_command = "pi"
+windows = []
