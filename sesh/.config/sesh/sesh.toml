@@ -1,6 +1,11 @@
 #:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
 blacklist = ["scratch"]
 
+[[name_substitution]]
+find = '^.*/([^/]+)$'
+replace = '$1'
+regex = true
+
 [default_session]
 startup_command = "pi"
 windows = []

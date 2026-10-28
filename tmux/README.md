@@ -45,6 +45,15 @@ working directory. Channel definitions live in
 session with its current name prefilled; `Ctrl-d` kills the selected session.
 The rename prompt uses Zsh's line editor rather than Bash-specific `read` options.
 
+New directory-backed sessions use only the directory's final component, such as
+`/home/user/projects/my-app` → `my-app`, through Sesh's `name_substitution` rule.
+This overrides Git-based naming, so it also works for non-repository directories
+and subdirectories. Spaces, dots, and colons are normalized by Sesh for tmux.
+Existing sessions keep their names; `Ctrl-r` remains available for manual changes.
+If two directories have the same final component, Sesh reuses the existing session
+with that name, even when it points to a different directory. Give those directories
+distinct names or configure explicit `[[session]]` entries in `sesh.toml`.
+
 ## Colors and terminal support
 
 The configuration requires **tmux 3.8 or newer** for its built-in theme options.
