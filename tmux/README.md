@@ -41,7 +41,9 @@ Press the prefix (`Ctrl-a`), then the listed key. All popups use tmux's built-in
 The Sesh and Ports popups start in `$HOME`; Worktrees starts in the current pane's
 working directory. Channel definitions live in
 `television/.config/television/cable/` (the `worktree` channel is defined in
-`lazyworktree.toml`).
+`lazyworktree.toml`). In the Sesh picker, `Ctrl-r` renames the selected tmux
+session with its current name prefilled; `Ctrl-d` kills the selected session.
+The rename prompt uses Zsh's line editor rather than Bash-specific `read` options.
 
 ## Colors and terminal support
 

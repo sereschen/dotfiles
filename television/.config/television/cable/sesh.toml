@@ -21,11 +21,24 @@ command = "sesh preview '{strip_ansi|split: :1..|join: }'"
 [keybindings]
 enter = "actions:connect"
 ctrl-d = ["actions:kill_session", "reload_source"]
+ctrl-r = ["actions:rename_session", "reload_source"]
 
 [actions.connect]
 description = "Connect to selected session"
 command = "sesh connect '{strip_ansi|split: :1..|join: }'"
 mode = "execute"
+
+[actions.rename_session]
+description = "Rename selected session"
+command = """
+zsh -c '
+  session=$1
+  new_name=$session
+  vared -p "New session name: " new_name &&
+    [[ -n $new_name ]] && tmux rename-session -t "$session" "$new_name"
+' _ '{strip_ansi|split: :1..|join: }'
+"""
+mode = "fork"
 
 [actions.kill_session]
 description = "Kill selected tmux session"
