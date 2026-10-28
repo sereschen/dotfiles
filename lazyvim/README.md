@@ -38,6 +38,10 @@ This symlinks `.config/nvim/` → `~/.config/nvim/`.
 | `obsidian.lua` | Obsidian vault integration |
 | `one-liners.lua` | Small single-line plugin configs |
 
+The Obsidian integration uses `~/projects/grit/` as its `work` workspace and is
+loaded only when that directory exists. Change both the workspace path and the
+`cond` directory check in `lua/plugins/obsidian.lua` when choosing another vault.
+
 ## Dependencies
 
 ### Required (brew)
