@@ -18,5 +18,6 @@ brew "tree"
 brew "ripgrep"
 
 # Tmux ecosystem
+brew "python@3"
 brew "sesh"
 brew "television"

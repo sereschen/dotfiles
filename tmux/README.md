@@ -77,6 +77,13 @@ restarting the tmux server.
 
 ### Required (brew)
 - `tmux` 3.8+
+- `fzf` and `python@3` (Python 3.10+) — required by `tmux-fzf-links`
+
+The link picker resolves `python3` from the tmux server's `PATH`. Install Python
+3.10+ and ensure it comes before macOS's system Python. On Linux, use the system
+package manager or another Python installation. If needed, set `@fzf-links-python`
+to an interpreter path in a local configuration; do not hardcode a Homebrew prefix
+for every machine.
 
 ### Required (git clone)
 - **TPM** — must be cloned manually:
