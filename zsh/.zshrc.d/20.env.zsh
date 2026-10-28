@@ -2,6 +2,7 @@
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 export STARSHIP_CONFIG=~/.config/starship.toml
+export MCP_UI_VIEWER=none
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
