@@ -1,6 +1,6 @@
 return {
   "christoomey/vim-tmux-navigator",
-  cond = vim.fn.executable("tmux") == 1,
+  cond = vim.fn.executable("tmux") == 1 and vim.env.TMUX ~= nil and vim.env.TMUX ~= "",
   cmd = {
     "TmuxNavigateLeft",
     "TmuxNavigateDown",

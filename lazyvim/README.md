@@ -31,7 +31,8 @@ This symlinks `.config/nvim/` → `~/.config/nvim/`.
 | `aerial.lua` | Code outline/symbols |
 | `noice.lua` | UI for messages/cmdline |
 | `multicursor.lua` | Multi-cursor editing |
-| `tmux-navigator.lua` | Vim-tmux pane navigation |
+| `tmux-navigator.lua` | Vim-tmux pane navigation, enabled only inside tmux |
+| `rex-navigator.lua` | Neovim/Rex pane navigation, enabled only inside Rex |
 | `nvim-lint.lua` | Async linting |
 | `overseer.lua` | Task runner |
 | `refactoring.lua` | Refactoring tools |
@@ -41,6 +42,17 @@ This symlinks `.config/nvim/` → `~/.config/nvim/`.
 The Obsidian integration uses `~/projects/grit/` as its `work` workspace and is
 loaded only when that directory exists. Change both the workspace path and the
 `cond` directory check in `lua/plugins/obsidian.lua` when choosing another vault.
+
+## Pane navigation
+
+`Ctrl-h/j/k/l` moves between Neovim splits first, then into the adjacent
+multiplexer pane at an editor edge. `vim-tmux-navigator` handles tmux sessions;
+`rex-navigator.nvim` handles Rex sessions. Outside either multiplexer, LazyVim
+keeps its normal window navigation. Nested tmux/Rex sessions are unsupported.
+
+Rex also needs the companion loaded by the [Rex package](../rex/README.md#neovim-navigation).
+Install the Neovim plugin before reloading Rex. The explicit Lazy key mappings
+keep LazyVim from replacing the Rex navigation mappings during startup.
 
 ## Dependencies
 
@@ -55,3 +67,5 @@ loaded only when that directory exists. Change both the workspace path and the
 
 ### Optional
 - Language servers, formatters, and linters are installed via Mason (built into LazyVim)
+- Rex navigation requires Neovim 0.10+, the Rex CLI, and `ps` on the Rex server.
+  Navigation is available in normal and terminal modes, not insert mode.

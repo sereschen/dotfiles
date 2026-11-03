@@ -32,3 +32,15 @@ rex.bind("ctrl+a>.", "pane.resize", { amount = 20, direction = "right" })
 rex.bind("repeat/.", "pane.resize", { amount = 20, direction = "right" })
 rex.bind("ctrl+a>=", "pane.resize", { amount = 7, direction = "up" })
 rex.bind("repeat/=", "pane.resize", { amount = 7, direction = "up" })
+
+local data = os.getenv("XDG_DATA_HOME")
+if not data or data == "" then
+  data = os.getenv("HOME") .. "/.local/share"
+end
+local plugin = data .. "/nvim/lazy/rex-navigator.nvim"
+local ok, err = pcall(function()
+  dofile(plugin .. "/rex/navigator.lua").setup()
+end)
+if not ok then
+  rex.log("warn", "rex-navigator not loaded: " .. tostring(err))
+end
