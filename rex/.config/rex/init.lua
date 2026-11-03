@@ -2,6 +2,31 @@ rex.bind("cmd+k", "com.superlogical.terminal.clear")
 rex.bind("ctrl+a>o", "session.switch")
 rex.bind("ctrl+a>ctrl+a", "pane.send_key", { key = "ctrl+a" })
 
+rex.action({
+  name = "ports",
+  title = "Open Ports Picker",
+  run = function(ctx)
+    local source, err = rex.session.describe_block({ block_id = ctx.block_id })
+    if err then error(err, 0) end
+    local layer, create_err = rex.session.new_layer({
+      window_id = source.block.window_id,
+      bounds = { 0.1, 0.15, 0.8, 0.7 },
+      focus = true,
+      layout = rex.layout.block({
+        flavor = "com.superlogical.terminal.shell",
+        options = {
+          command = { "tv", "ports" },
+          cwd = os.getenv("HOME"),
+          exit = { on_completion = true },
+        },
+      }),
+    })
+    if create_err then error(create_err, 0) end
+    return layer
+  end,
+})
+rex.bind("ctrl+a>p", "ports")
+
 rex.bind("ctrl+a>h", "client.tab.previous")
 rex.bind("ctrl+a>l", "client.tab.next")
 rex.bind("ctrl+a>1", "client.tab.goto", { index = 1 })

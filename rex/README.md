@@ -27,6 +27,7 @@ Press `Ctrl-a`, then the listed key, except for `Cmd-k` and `Ctrl-h/j/k/l`.
 | `Cmd-k` | Native Clear Terminal; replaces Rex's default session picker |
 | `Ctrl-h/j/k/l` | Navigate Neovim splits first, then Rex panes; no prefix |
 | `o` | Rex session picker; replaces the role of the tmux `tv sesh` popup, not its implementation |
+| `p` | Open `tv ports` in a centered floating terminal |
 | `Ctrl-a` | Send `Ctrl-a` through to the terminal |
 | `h` / `l` | Previous / next tab |
 | `1`–`9` | Select tab by index |
@@ -44,6 +45,26 @@ Press `Ctrl-a`, then the listed key, except for `Cmd-k` and `Ctrl-h/j/k/l`.
 In repeat mode, `,`, `.`, and `=` resize without the prefix. Press Enter or
 Escape to leave. This is not tmux's timed repeat behavior; other keys are
 suppressed while this mode is active.
+
+## Ports popup
+
+`Ctrl-a`, then `p` opens the existing television `ports` channel in a focused,
+centered float at 80% of the window width and 70% of its height. It starts in
+`$HOME`, like the tmux popup. Escape cancels the picker; selecting a port with
+Enter also exits. The float closes when the picker exits, and Rex restores
+focus to the underlying pane. A quick startup failure stays open so its error
+can be read.
+
+The channel lists listening TCP ports and previews their processes. `Ctrl-d`
+kills the processes listening on the selected port and refreshes the list.
+This uses the shared channel unchanged, so the same action remains available
+in Ghostty and tmux. No processes are killed just by opening the popup.
+
+Install television (`tv`) and stow the `television` package separately. Rex
+runs `tv ports` through the user's login shell to resolve its `PATH`. The
+existing channel requires macOS `/usr/sbin/lsof` plus `ps`; this integration
+has only been verified on macOS. The action is also available as **Open Ports
+Picker** in the command palette or through `rex do ports`.
 
 ## Neovim navigation
 
@@ -80,8 +101,9 @@ and depends on Rex APIs that may change.
   copy-mode selection, and sending the `clear` command are not migrated.
 - The home-directory-specific new-window binding is not migrated. The ordinary
   new-tab binding does not explicitly set a working directory.
-- The Sesh, Ports, and Worktrees television popups are not migrated. The `o`
-  binding intentionally opens Rex's own session picker instead of television.
+- The Ports television popup is implemented as a Rex floating terminal. The
+  Sesh and Worktrees television popups are not migrated. The `o` binding
+  intentionally opens Rex's own session picker instead of television.
 - TPM, tmux-sensible, tmux-yank, tmux-resurrect, tmux-continuum, tmux-open,
   tmux-fzf-links, and catppuccin-tmux are not migrated. `rex-navigator.nvim`
   replaces the basic directional navigation from vim-tmux-navigator, but does
@@ -104,6 +126,13 @@ rex keymap --json
 
 Use the CLI and server belonging to the intended Rex installation if multiple
 versions are installed. The keymap's diagnostics must be empty.
+
+The Ports action was checked and reloaded on macOS with Rex Beta 1758 and
+television 0.15.9. A live smoke test verified floating placement and focus,
+port listing and process preview, killing a disposable TCP listener with
+`Ctrl-d` and refreshing the results, and both Escape and Enter closing the
+float and restoring focus. The keymap registered `Ctrl-a>p` with no diagnostics.
+The action was exercised through the CLI; the physical shortcut was not tested.
 
 The navigation setup was checked and reloaded on macOS with Rex Beta 1758 and
 `rex-navigator.nvim` commit `69c0351`. Rex reported all four navigation actions
