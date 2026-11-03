@@ -64,6 +64,7 @@ detect and use them if available:
 dotfiles/
 ├── zsh/              # Zsh shell configuration
 ├── tmux/             # Tmux terminal multiplexer
+├── rex/              # Rex terminal multiplexer (see rex/README.md)
 ├── lazyvim/          # Neovim editor config
 ├── starship/         # Starship prompt config
 ├── nix-darwin/       # nix-darwin configuration (macOS)
