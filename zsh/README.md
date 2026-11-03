@@ -24,6 +24,17 @@ This symlinks `.zshrc` → `~/.zshrc` and `.zshrc.d/` → `~/.zshrc.d/`.
 | `.zshrc.d/60.keybindings.zsh` | Vi-mode binds, FZF_DEFAULT_COMMAND |
 | `.zshrc.d/99999.needs-to-be-last.zsh` | Zoxide init (must be last to override `cd`) |
 
+## Docker Desktop completions
+
+`10.core.zsh` adds `$HOME/.docker/completions` to `fpath` when the directory
+exists, before the shared `compinit` call. Docker Desktop supplies the completion
+files; no separate initialization belongs in `.zshrc`. If Docker Desktop adds
+its completion block there again, remove that duplicate block.
+
+The shared initialization uses a cached completion dump. If Docker completions
+are not recognized after first installing them, remove `~/.zcompdump` and open
+a new shell to rebuild it.
+
 ## Dependencies
 
 ### Required (brew)
