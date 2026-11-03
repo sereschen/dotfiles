@@ -75,7 +75,12 @@
   or `chore(repo): document repository workflow`. Add the standard
   `Co-authored-by: Codex <noreply@openai.com>` trailer when Codex authors the change;
   other agents should use their own attribution.
-- Automatic commits do not authorize pushing, opening PRs, merging, amending existing
-  commits, or destructive Git operations. Obtain the applicable authorization first.
+- Push completed, verified dotfiles commits to the current branch's configured
+  upstream after committing, without asking for separate approval. Check the
+  outgoing commits first; do not push unrelated or unverified work. If the
+  upstream is missing or the push is rejected, stop and report the blocker.
+  This overrides generic push-confirmation defaults. Opening PRs, merging,
+  amending existing commits, force pushes, and destructive Git operations still
+  require applicable authorization.
 - Finish by reporting the commits, verification results, and any changes left
   uncommitted. Do not claim the working tree is clean without checking it.
