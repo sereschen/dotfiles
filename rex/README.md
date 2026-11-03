@@ -37,7 +37,7 @@ Press `Ctrl-a`, then the listed key, except for `Cmd-k` and `Ctrl-h/j/k/l`.
 | `-` | Split down |
 | `Shift-\` (`\|`) | Split right |
 | `j` / `k` | Focus the pane below / above |
-| `c` | Close the current pane |
+| `c` | Close the current pane, including its tab when it is the last pane |
 | `,` / `.` | Resize left / right with amount 20 |
 | `=` | Resize up with amount 7 |
 | `Ctrl-r` | Enter the exclusive repeat mode |
@@ -45,6 +45,18 @@ Press `Ctrl-a`, then the listed key, except for `Cmd-k` and `Ctrl-h/j/k/l`.
 In repeat mode, `,`, `.`, and `=` resize without the prefix. Press Enter or
 Escape to leave. This is not tmux's timed repeat behavior; other keys are
 suppressed while this mode is active.
+
+## Closing panes
+
+`Ctrl-a`, then `c` runs the `close_pane` action, which closes the invoking pane
+through Rex's server API. Closing the last pane also closes its tab, matching
+the tmux binding. This ends the program in that pane without a confirmation
+prompt. Other panes and tabs are not closed.
+
+Rex's native `pane.close` action is unavailable for a tab's only pane; binding
+it directly lets the `c` key fall through to terminal input in that case. The
+custom action avoids that restriction and explicitly targets the invoking
+session and pane rather than whichever pane the app focuses later.
 
 ## Ports popup
 
@@ -126,6 +138,12 @@ rex keymap --json
 
 Use the CLI and server belonging to the intended Rex installation if multiple
 versions are installed. The keymap's diagnostics must be empty.
+
+The close action was checked and reloaded on macOS with Rex Beta 1758. A live
+smoke test closed disposable split and floating panes, then the last pane in
+a disposable tab, while preserving all original panes and the active tab.
+The loaded keymap registered `Ctrl-a>c` with no diagnostics. Physical shortcut
+keypresses were not exercised.
 
 The Ports action was checked and reloaded on macOS with Rex Beta 1758 and
 television 0.15.9. A live smoke test verified floating placement and focus,

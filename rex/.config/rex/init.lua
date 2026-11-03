@@ -45,7 +45,19 @@ rex.bind("ctrl+a>-", "pane.split", { direction = "down" })
 rex.bind("ctrl+a>shift+\\", "pane.split", { direction = "right" })
 rex.bind("ctrl+a>j", "pane.focus", { direction = "down" })
 rex.bind("ctrl+a>k", "pane.focus", { direction = "up" })
-rex.bind("ctrl+a>c", "pane.close")
+rex.action({
+  name = "close_pane",
+  title = "Close Pane Including Last",
+  run = function(ctx)
+    local result, err = rex.call("block.close", {
+      session_id = ctx.session_id,
+      block_id = ctx.block_id,
+    })
+    if err then error(err, 0) end
+    return result
+  end,
+})
+rex.bind("ctrl+a>c", "close_pane")
 
 rex.mode("repeat", { exclusive = true })
 rex.bind("ctrl+a>ctrl+r", "client.mode.enter", { name = "repeat" })
