@@ -1,0 +1,5 @@
+{
+  "asyncByDefault": true,
+  "defaultSubagentContext": "fresh",
+  "autoResume": false
+}

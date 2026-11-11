@@ -1,0 +1,24 @@
+{
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "theme": "dark",
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": false,
+  "editorPaddingX": 0,
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "tuiMode": "fullscreen",
+  "steeringMode": "all",
+  "cacheWarming": "streaming",
+  "compaction": {
+    "enabled": true
+  },
+  "packages": [
+    "npm:pi-lens@4.4.12",
+    "npm:pi-web-access@0.47.0",
+    "npm:pi-subagents@0.88.0",
+    "npm:pi-intercom@0.18.1",
+    "npm:pi-obsidian@0.2.3",
+    "npm:@howaboua/pi-subdir-agents@0.0.9"
+  ]
+}

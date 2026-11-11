@@ -65,11 +65,20 @@ dotfiles/
 ├── zsh/              # Zsh shell configuration
 ├── tmux/             # Tmux terminal multiplexer
 ├── rex/              # Rex terminal multiplexer (see rex/README.md)
+├── pi/               # Personal Pi workflow and public packages (see pi/README.md)
 ├── lazyvim/          # Neovim editor config
 ├── starship/         # Starship prompt config
 ├── nix-darwin/       # nix-darwin configuration (macOS)
 └── [other tools]/    # Additional tool configurations
 ```
+
+## Personal Pi setup
+
+The optional [Pi module](pi/README.md) carries provider-neutral settings, pinned
+public extensions, fresh-context research/review roles, and durable work-note
+skills and prompts. It does not copy work credentials, private providers, notes,
+or runtime state. It is not installed by `setup.sh`; read its conflict-safe,
+no-directory-folding Stow procedure before enabling it on a personal machine.
 
 ## Features
 
