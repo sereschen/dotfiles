@@ -26,7 +26,9 @@ use a forked transcript merely to save briefing effort. Consume its evidence and
 read the primary source before editing. Other implementation delegation requires
 an explicit request. Research and completion review must not overlap.
 
-When work needs durable notes, load the `work-context` skill. Before compaction or
+When work needs durable notes, load the `work-context` skill. Default to the
+`~/work-context/` Obsidian vault (`~/work-context/tasks/<stable-id>/Overview.md`)
+unless the workspace establishes another notes location. Before compaction or
 replacing a session, record the current goal, approved scope, decisions, exact
 checkout/branch, changes, verification, blockers, next action, and authority
 boundary in the existing work notes. Do not create a new note system for a trivial

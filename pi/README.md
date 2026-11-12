@@ -113,10 +113,12 @@ settings overlay.
   checks pass. Both inherit the active model; select role-specific models in
   local `subagents.agentOverrides` only when needed.
 - Update existing task notes at meaningful milestones. Keep Overview, actions,
-  decisions and dated evidence separate. The skill includes optional templates,
-  not a copied vault or automatic note generator.
+  decisions and dated evidence separate. Default task notes live in the local
+  Obsidian vault at `~/work-context/` (`~/work-context/tasks/<stable-id>/Overview.md`)
+  unless a workspace establishes its own notes location. The skill includes
+  optional templates, not a copied vault or automatic note generator.
 - Use `/context-checkpoint [focus]` before a long-session transition, and
-  `/context-resume /absolute/path/to/Overview.md` to start from durable context.
+  `/context-resume <Overview path or task id>` to start from durable context.
   `/compact` and session replacement remain separate explicit actions.
 - Compaction uses Pi defaults. Streaming cache warming is copied from the current
   preference; it may make extra provider requests during active runs and does
