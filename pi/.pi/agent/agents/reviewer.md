@@ -2,7 +2,7 @@
 name: reviewer
 description: Independently review a completed scoped change without editing or running commands
 tools: read, grep, find, ls
-model: inherit
+model: openai-codex/gpt-6-astra
 async: true
 defaultContext: fresh
 inheritProjectContext: true

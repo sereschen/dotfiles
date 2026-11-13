@@ -52,8 +52,10 @@ Markdown/templates and the validation uses only Node's standard library.
 
 ## Deliberate differences
 
-- No provider, model IDs, account budget, enabled-model list or corporate endpoint
-  is carried over. Custom roles explicitly inherit the active personal model.
+- No work-provider configuration, account budget, enabled-model list or corporate
+  endpoint is carried over. The personal roles now explicitly pin OpenAI Codex
+  Astra for reviews and Terra for scouting; this is a user-requested personal
+  choice, not imported work-provider state. Authentication stays local.
 - Child context defaults to fresh. Automatic child resume after reload/restart is
   off so interrupted work is inspected before an explicit continuation.
 - No PR poller is enabled by default. No watcher, scheduled job, cross-session

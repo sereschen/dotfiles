@@ -47,8 +47,10 @@ authorized and required before declaring implementation complete. Supply the
 requirements, exact diff scope, and verification evidence. The reviewer does not
 edit, run broad builds/tests, or delegate. Evaluate findings, fix accepted issues
 in the lead, and rerun affected checks. A failed or missing review is not a pass.
-The optional scout and reviewer definitions inherit the selected model; change
-role-to-model routing only through explicit local configuration.
+The optional scout and reviewer use explicit model pins in their agent definitions:
+Terra for scouting and Astra for reviews. Prefer the newest available version within
+each family; update and verify pins deliberately when newer models appear. Do not
+silently switch families or providers when a pinned model is unavailable.
 
 Use native asynchronous children and their completion notifications. Do not poll,
 sleep, or start duplicate children while waiting. After infrastructure failure,

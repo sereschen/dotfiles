@@ -11,7 +11,7 @@ plugin source, or installation cache is included.
 | --- | --- |
 | `.pi/agent/settings.json` | Provider-neutral UI/context preferences and pinned public packages |
 | `.pi/agent/AGENTS.md` | Lead-owned implementation, bounded research, independent review and safety |
-| `.pi/agent/agents/` | Fresh-context scout and reviewer; both inherit the selected model |
+| `.pi/agent/agents/` | Fresh-context scout pinned to Terra and reviewer pinned to Astra |
 | `.pi/agent/extensions/subagent/config.json` | Async children, fresh context, no automatic resume after restart |
 | `.pi/agent/skills/work-context/` | On-demand work-note workflow and optional templates |
 | `.pi/agent/prompts/` | `/context-checkpoint` and `/context-resume` |
@@ -59,7 +59,9 @@ web access. Obsidian is required only for its vault integration; no Dataview,
 Tasks, Bases or Kanban plugin is required by the plain-Markdown context workflow.
 No API keys, browser cookies, vault registry, or MCP endpoints are configured here.
 Authenticate your own provider through Pi's `/login` after installation. The
-settings deliberately do not select a provider or model unavailable on your Mac.
+main-session settings remain provider-neutral. The two optional role definitions
+explicitly require the OpenAI Codex models below; authenticate that provider and
+verify their availability on each Mac before using those roles.
 
 ## Install on a personal machine
 
@@ -110,8 +112,8 @@ settings overlay.
 
 - Start in the actual repository/worktree. The lead implements and tests.
 - Use one bounded scout for substantial research and one fresh reviewer after
-  checks pass. Both inherit the active model; select role-specific models in
-  local `subagents.agentOverrides` only when needed.
+  checks pass. Scout uses Terra and reviewer uses Astra through explicit pins;
+  other agents retain their existing model routing.
 - Update existing task notes at meaningful milestones. Keep Overview, actions,
   decisions and dated evidence separate. Default task notes live in the local
   Obsidian vault at `~/work-context/` (`~/work-context/tasks/<stable-id>/Overview.md`)
@@ -126,6 +128,35 @@ settings overlay.
 - A disconnect is not permission to replay partial work. Automatic child resume
   is disabled; inspect saved results and continue the same run explicitly.
 - Intercom availability does not authorize progress broadcasts or monitoring.
+
+## Subagent model routing
+
+The shared role definitions currently pin:
+
+| Role | Model |
+| --- | --- |
+| `reviewer` | `openai-codex/gpt-6-astra` |
+| `scout` | `openai-codex/gpt-6.1-terra` |
+
+These were the newest available members of their respective families in the
+configured registry when selected. Keep **Astra for reviews** and **Terra for
+scouting** as newer models appear: check `/subagents-models`, update the `model:`
+line in `.pi/agent/agents/<role>.md`, and update the matching test assertions and
+this table. Pins are updated deliberately, not by a background watcher, wildcard,
+or automatic fallback. Do not change families/providers to work around a failure.
+
+After pulling these dotfiles into an already linked installation, start a new Pi
+session or use `/reload` when ready, then verify `/subagents-models reviewer` and
+`/subagents-models scout`. Existing sessions can keep an older runtime mapping
+until reloaded; this task does not reload them. Both Macs need their own provider
+login and access to the pinned models. If unavailable, stop and resolve access or
+explicitly revise the pin rather than silently choosing another model.
+
+A per-run model override or local `subagents.agentOverrides.<role>.model` (including
+provider-scoped/project overrides) can supersede these frontmatter pins. Inspect
+the effective mapping if a role runs on an unexpected model. No main-session
+model setting, thinking preference, tool permissions, or other agent is changed
+by these pins.
 
 ## Optional PR status
 

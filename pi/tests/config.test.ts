@@ -74,13 +74,23 @@ test('fresh async children require explicit recovery and navigation stays disabl
   assert.equal(JSON.parse(read('.pi-lens/config.json')).tools.lsp_navigation.enabled, false);
   for (const role of ['scout', 'reviewer']) {
     const content = read(`.pi/agent/agents/${role}.md`);
-    for (const field of ['model: inherit', 'async: true', 'defaultContext: fresh', 'inheritProjectContext: true', 'inheritGlobalContext: true', 'acceptanceRole: read-only']) {
+    for (const field of ['async: true', 'defaultContext: fresh', 'inheritProjectContext: true', 'inheritGlobalContext: true', 'acceptanceRole: read-only']) {
       assert(content.includes(`\n${field}\n`), `${role} missing ${field}`);
     }
     assert(!/^tools:.*\b(?:write|edit|subagent|intercom|lsp_navigation)\b/m.test(content));
   }
   assert.match(read('.pi/agent/agents/reviewer.md'), /^tools: read, grep, find, ls$/m);
   assert.match(read('.pi/agent/agents/scout.md'), /^tools:.*\bcontact_supervisor\b/m);
+});
+
+test('role model pins use Astra for reviews and the approved latest Terra for scouts', () => {
+  for (const [role, model] of Object.entries({
+    reviewer: 'openai-codex/gpt-6-astra',
+    scout: 'openai-codex/gpt-6.1-terra',
+  })) {
+    const content = read(`.pi/agent/agents/${role}.md`);
+    assert.deepEqual(content.match(/^model: (.+)$/gm), [`model: ${model}`], `${role} model pin`);
+  }
 });
 
 test('skills and prompts use portable routing and valid local references', () => {
