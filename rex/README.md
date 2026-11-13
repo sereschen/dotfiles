@@ -13,10 +13,79 @@ stow --verbose --target="$HOME" rex
 ```
 
 This links `.config/rex/init.lua` into `~/.config/rex/init.lua`. Only the hidden
-configuration tree is installed; this README stays in the repository.
+configuration tree is installed; the README, appearance snapshot, helper, and
+tests stay in the repository.
 
 Rex must already be installed. This package is stowed separately; `setup.sh`
 continues to stow only `zsh`, `tmux`, and `lazyvim`.
+
+## Sharing appearance between Macs
+
+Rex's app preferences are separate from `init.lua`; Lua config reloads do not
+synchronize them. [`appearance.json`](appearance.json) is the shared visual
+baseline, exported from the configured Mac with Rex **0.1.0-preview.14**. It
+includes **Catppuccin Mocha**, vertical tabs, a right sidebar, and the saved
+inactive-pane styles. Font settings were not explicitly saved on that Mac, so
+they currently use Rex's defaults, not Ghostty's Hack Nerd Font.
+
+Requires **macOS** and **Node.js 22.18+** (native TypeScript support), plus Rex
+installed on each Mac. No npm install is needed to run the helper. Use matching
+Rex versions: these are internal app preference keys, not a stable Rex config
+API. Linux/iOS clients are not supported by this workflow.
+
+From the repository root, after pulling the shared dotfiles on the other Mac:
+
+```bash
+node rex/appearance.ts preview
+# Quit Rex manually. Run this from another terminal app, not inside Rex:
+node rex/appearance.ts apply --yes
+# Open Rex manually afterward.
+```
+
+Preview is read-only. Apply refuses while a `Rex` app process is running (the
+server can stay running), backs up the selected preferences, writes individual
+keys with macOS `defaults`, and reads them back to verify. It never quits,
+launches, reloads, or restows anything. Stowing the package alone does **not**
+apply appearance.
+
+The explicit allowlist covers themes, font/typography, terminal padding and
+selection, cursor shape/blinking, tab/sidebar presentation, and pane styling.
+A `null` in the snapshot means **remove that saved override and use Rex's
+version-specific default**. Applying also replaces the custom-theme collection
+with the shared one; back up first if the other Mac has custom themes to keep.
+Window/sidebar dimensions, open windows, sessions, hosts, remote-control
+permissions, startup commands, updates, and other nonvisual settings are never
+selected. Install any chosen fonts separately on both Macs.
+
+To make new GUI changes the shared baseline:
+
+```bash
+# Prefer to quit Rex manually first so its latest settings are saved.
+node rex/appearance.ts export
+git diff -- rex/appearance.json
+# Review, commit, and push the changed snapshot; pull and apply on the other Mac.
+```
+
+Export reads saved preferences, not unsaved GUI state. Both export and apply
+are explicit operations; there is no background synchronization. The JSON
+stores decoded custom-theme data with sorted object keys for readable diffs.
+An optional snapshot path works with each command, for example
+`node rex/appearance.ts export /tmp/rex-appearance.json`.
+
+Before applying, the helper saves a selected-preference backup with mode `0600`
+in `${XDG_STATE_HOME:-$HOME/.local/state}/rex/appearance-backups/` and prints its
+exact path. To undo, quit Rex and use that file:
+
+```bash
+node rex/appearance.ts preview /path/to/backup.json
+node rex/appearance.ts apply /path/to/backup.json --yes
+```
+
+Writes are per-key, not transactional. If a write/verification fails, the helper
+reports the backup restore command; it does not roll back automatically. Unknown
+snapshot keys, incomplete snapshots, and unsupported value types fail closed.
+After upgrading Rex, verify the allowlist and re-export intentionally rather than
+assuming newly added visual settings will synchronize automatically.
 
 ## Bindings
 
@@ -122,11 +191,29 @@ and depends on Rex APIs that may change.
   not provide previous-pane toggling, auto-save, or zoom preservation.
 - tmux terminal capabilities, environment, history, mouse, clipboard, status,
   border, theme, and plugin settings are not copied into Rex.
-- Ghostty's Catppuccin Mocha theme and Hack Nerd Font are not configured in Lua.
-  Set the font in Rex Settings; Settings > Theme offers theme import. Ghostty's
-  padding, decorations, Option-as-Alt, and SSH terminfo settings are not migrated.
+- Appearance is not configured in Lua. The optional export/apply workflow above
+  shares Rex's Catppuccin Mocha palette and selected visual preferences; it does
+  not migrate Ghostty's font or other settings automatically. Option-as-Alt and
+  SSH terminfo settings are not migrated.
 
 ## Verification
+
+Appearance checks (no live preference writes):
+
+```bash
+node --test rex/tests/appearance.test.ts
+node rex/appearance.ts preview
+```
+
+The appearance tests were verified on macOS with Node.js 26.13.0 and Rex
+0.1.0-preview.14. Tests use disposable absolute-path `defaults` domains to cover
+allowlisting, absent/default resets, theme data and scalar/array round trips,
+unrelated-key preservation, repeat application, validation, backup/restore,
+confirmation/running-app guards, and Stow exclusions. The real baseline was
+round-tripped in a disposable domain, not applied to live Rex. Second-Mac visual
+verification and other Rex versions have not been tested. Native Node execution
+does not typecheck; the repository has no TypeScript toolchain, and LSP type
+coverage is limited by missing workspace Node declarations.
 
 With the intended Rex CLI on `PATH`, run:
 
