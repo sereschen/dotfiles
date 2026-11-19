@@ -1,31 +1,91 @@
 rex.bind("cmd+k", "com.superlogical.terminal.clear")
 rex.bind("ctrl+a>o", "session.switch")
+rex.bind("ctrl+a>v", "pane.copy_mode.enter")
 rex.bind("ctrl+a>ctrl+a", "pane.send_key", { key = "ctrl+a" })
 
+require("ports")
+
+local terminal = "com.superlogical.terminal"
+
+local function worktree_git(args, cwd, stdin)
+  local result, err = rex.exec(args, { cwd = cwd, stdin = stdin, timeout = 3 })
+  if not result then error(err, 0) end
+  if not result.ok then
+    error(result.timed_out and "Git timed out" or result.stderr, 0)
+  end
+  return result.stdout
+end
+
 rex.action({
-  name = "ports",
-  title = "Open Ports Picker",
+  name = "open_worktree",
+  title = "Open Worktree in Pi…",
   run = function(ctx)
-    local source, err = rex.session.describe_block({ block_id = ctx.block_id })
-    if err then error(err, 0) end
-    local layer, create_err = rex.session.new_layer({
-      window_id = source.block.window_id,
-      bounds = { 0.1, 0.15, 0.8, 0.7 },
-      focus = true,
-      layout = rex.layout.block({
-        flavor = "com.superlogical.terminal.shell",
-        options = {
-          command = { "tv", "ports" },
-          cwd = os.getenv("HOME"),
-          exit = { on_completion = true },
-        },
-      }),
-    })
-    if create_err then error(create_err, 0) end
-    return layer
+    if not ctx.block_id or not ctx.client_id or ctx.server then
+      error("Open Worktree needs a terminal pane on the local Rex server", 0)
+    end
+    local source = assert(rex.session.describe_block({ block_id = ctx.block_id })).block
+    local server = assert(rex.call("server.status"))
+    if source.creator_name ~= terminal or source.host_id ~= server.host_id then
+      error("Open Worktree needs a terminal on this Rex server", 0)
+    end
+    local process = assert(rex.block.call(terminal, "process", { block_id = ctx.block_id }))
+    local cwd = process.foreground and process.foreground.cwd
+    if not cwd then error("Rex could not read the foreground process's directory", 0) end
+
+    local common_dir_args = { "git", "rev-parse", "--path-format=absolute", "--git-common-dir" }
+    local common_dir = worktree_git(common_dir_args, cwd)
+    local listing = worktree_git({ "git", "worktree", "list", "--porcelain", "-z" }, cwd)
+    local items = {}
+    for record in listing:gmatch("(.-)%z%z") do
+      local path = record:match("^worktree ([^%z]+)")
+      local fields = record .. "\0"
+      if path and not fields:find("\0bare\0", 1, true) and not fields:find("\0prunable ", 1, true) then
+        items[#items + 1] = {
+          id = path,
+          title = fields:match("%zbranch refs/heads/([^%z]+)") or "Detached HEAD",
+          subtitle = path,
+          icon = "branch",
+        }
+        if #items == 2000 then break end
+      end
+    end
+    if #items == 0 then error("No available Git worktrees in this repository", 0) end
+
+    local path, why, detail = rex.ui.pick({ title = "Open Worktree in Pi", items = items })
+    if not path then
+      if why == "cancelled" then return end
+      error("Worktree picker: " .. why .. (detail and (": " .. detail) or ""), 0)
+    end
+    local root = worktree_git({ "git", "rev-parse", "--show-toplevel" }, path):gsub("\n$", "")
+    if root ~= path or worktree_git(common_dir_args, path) ~= common_dir then
+      error("The selected path is no longer a worktree for this repository: " .. path, 0)
+    end
+
+    local key = worktree_git({ "git", "hash-object", "--stdin" }, path, path):sub(1, 12)
+    local name = path:match("([^/]+)$"):gsub("%c", " "):match("^%s*(.-)%s*$")
+    if name == "" or #name > 113 then name = "Worktree" end
+    local label = name .. " [" .. key .. "]"
+    for _, session in ipairs(assert(rex.call("session.list")).sessions or {}) do
+      if session.label == label then
+        rex.client.queue("session.select", { session_id = session.session_id })
+        return
+      end
+    end
+
+    local session = assert(rex.call("session.create", {
+      label = label,
+      initial_windows = {{
+        window_label = "ai",
+        layout = rex.layout.block({
+          flavor = terminal .. ".shell",
+          options = { cwd = path, command = { "pi" }, interactive = true },
+        }),
+      }},
+    }))
+    rex.client.queue("session.select", { session_id = session.session_id })
   end,
 })
-rex.bind("ctrl+a>p", "ports")
+rex.bind("ctrl+a>t", "open_worktree")
 
 rex.bind("ctrl+a>h", "client.tab.previous")
 rex.bind("ctrl+a>l", "client.tab.next")
