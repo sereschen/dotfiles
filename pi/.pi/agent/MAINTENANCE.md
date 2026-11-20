@@ -6,6 +6,13 @@ primary evidence, and result of each actual recheck.
 
 ## Open
 
+- [ ] When newer models become available, check `/subagents-models` and update
+  the explicit pins in `agents/reviewer.md` (newest available Astra) and
+  `agents/scout.md` (newest available Terra). Update the matching assertions in
+  `tests/config.test.ts` from the dotfiles Pi package and its README, verify
+  availability on each Mac, then review the change. Keep provider authentication
+  local. There is no automatic latest-model selection or fallback.
+
 - [ ] Verify the `pi-lens` navigation schema with the selected provider before
   enabling `lsp_navigation`. The portable baseline leaves this model-facing tool
   disabled because a Responses-compatible provider rejected an array schema with

@@ -1,9 +1,10 @@
 ---
 description: Continue from durable task notes without replaying a previous session
-argument-hint: "<Overview path>"
+argument-hint: "<Overview path or task id>"
 ---
-Load the work-context skill and read the work item at $1. If no unambiguous path
-was supplied, ask for it. Read relevant parent/current decisions and the next
+Load the work-context skill and read the work item at $1 (resolving a bare `<stable-id>`
+to `~/work-context/tasks/$1/Overview.md` when applicable). If no unambiguous path or
+task ID was supplied, ask for it. Read relevant parent/current decisions and the next
 action, verify the actual repository, checkout, branch and local changes, and
 summarize the approved scope and any contradictions. Continue only actions
 authorized by the current request and applicable instructions; do not treat

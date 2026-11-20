@@ -5,15 +5,17 @@ description: Maintain compact durable work notes and fresh-session handoffs for 
 
 # Durable work context
 
-Use an existing workspace note convention first. Ask where notes belong if there
-is no established location. Do not turn a one-command task into a documentation
-project, create an Obsidian vault, migrate existing notes, or copy private notes
-into dotfiles as part of using this skill.
+Use an existing workspace note convention first. Otherwise, default to the local
+Obsidian vault at `~/work-context/` (`tasks/<stable-id>/Overview.md` and `docs/`).
+Ask where notes belong only if `~/work-context/` is missing or ambiguous. Do not
+turn a one-command task into a documentation project, migrate existing notes, or
+copy private notes into dotfiles as part of using this skill.
 
 ## Start or continue
 
-1. Find the work item's canonical Overview through the workspace index or the exact
-   path supplied by the user. If an identifier matches several notes, ask.
+1. Find the work item's canonical Overview through the workspace index,
+   `~/work-context/tasks/<stable-id>/Overview.md`, or the exact path supplied by
+   the user. If an identifier matches several notes, ask.
 2. Read its goal, approved scope, current status, blockers, and next action. Read
    a linked parent project's Overview/Context first when it governs the work.
 3. Read Todos and linked current Context only as relevant. Use History for a
@@ -23,8 +25,9 @@ into dotfiles as part of using this skill.
 
 ## Keep one source for each fact
 
-Use `tasks/<stable-id>/Overview.md` when creating a new work item in an agreed
-notes root. Add supporting files only when they earn their place:
+Use `tasks/<stable-id>/Overview.md` inside `~/work-context/` (or an agreed workspace
+notes root) when creating a new work item. Add supporting files only when they earn
+their place:
 
 - **Overview.md:** current goal, approved scope, stage, blockers, next action and
   links. This is the entry point, not a chronological log.

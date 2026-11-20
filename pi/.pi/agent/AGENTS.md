@@ -26,7 +26,9 @@ use a forked transcript merely to save briefing effort. Consume its evidence and
 read the primary source before editing. Other implementation delegation requires
 an explicit request. Research and completion review must not overlap.
 
-When work needs durable notes, load the `work-context` skill. Before compaction or
+When work needs durable notes, load the `work-context` skill. Default to the
+`~/work-context/` Obsidian vault (`~/work-context/tasks/<stable-id>/Overview.md`)
+unless the workspace establishes another notes location. Before compaction or
 replacing a session, record the current goal, approved scope, decisions, exact
 checkout/branch, changes, verification, blockers, next action, and authority
 boundary in the existing work notes. Do not create a new note system for a trivial
@@ -45,8 +47,10 @@ authorized and required before declaring implementation complete. Supply the
 requirements, exact diff scope, and verification evidence. The reviewer does not
 edit, run broad builds/tests, or delegate. Evaluate findings, fix accepted issues
 in the lead, and rerun affected checks. A failed or missing review is not a pass.
-The optional scout and reviewer definitions inherit the selected model; change
-role-to-model routing only through explicit local configuration.
+The optional scout and reviewer use explicit model pins in their agent definitions:
+Terra for scouting and Astra for reviews. Prefer the newest available version within
+each family; update and verify pins deliberately when newer models appear. Do not
+silently switch families or providers when a pinned model is unavailable.
 
 Use native asynchronous children and their completion notifications. Do not poll,
 sleep, or start duplicate children while waiting. After infrastructure failure,

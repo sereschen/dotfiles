@@ -2,7 +2,7 @@
 name: scout
 description: Investigate bounded code and documentation questions and return compact evidence
 tools: read, grep, find, ls, bash, symbol_search, module_report, read_symbol, read_enclosing, web_search, fetch_content, get_search_content, contact_supervisor
-model: inherit
+model: openai-codex/gpt-6.1-terra
 async: true
 defaultContext: fresh
 inheritProjectContext: true
